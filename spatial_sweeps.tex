@@ -1,4 +1,4 @@
-\section*{Introduction}
+\section{Introduction}
 
 Positive selection is a fundemental force in population genetics, and selective sweeps are responsible for many well-known examples of adaptation such as
 changes in melanin production in humans \citep{williamson2007localizing},
@@ -73,9 +73,9 @@ and identifies potentially novel sources of insecticide resistance as well as ot
 associated with immune response, sensory perception, and development.
 Through simulation and empirical analysis, we demonstrate the potential of spatial population structure to identify, rather than obscure, segregating variants under positive selection.
 
-\section*{Methods}
+\section{Methods}
 
-\subsection*{Spatial simulation}\label{subsec:spatial-simulation-method}
+\subsection{Spatial simulation}\label{subsec:spatial-simulation-method}
 
 To simulate selective sweeps in continuous space, 
 we used a \texttt{SLiM v3}  \citep{haller_slim_2019} model as described in \cite{battey_space_2020}
@@ -112,7 +112,7 @@ alongside the landscape area occupied by individuals carrying the sweeping allel
 calculated as the area of the convex hull containing all allele carriers \citep{barber_quickhull_1996}.
 We ran 100 total simulations to fixation across each parameter combination; simulations where the allele did not fix were restarted from the time point just before the addition of the sweeping allele.
 
-\subsection*{Power analysis}\label{subsec:power-analysis}
+\subsection{Power analysis}\label{subsec:power-analysis}
 
 To assess the power of this spatial signal to identify variants under positive selection,
 we analyzed the spatial distribution of neutral variation across the genome over the course of our simulations.
@@ -141,9 +141,9 @@ Genomic windows that had SF outlier:non-outlier ratios above the Nth percentile 
 were identified as windowed spatial-frequency (WSF) outliers while again varying the percentile cutoff between $0.5$ and $0.01$, and 
 we again tested for whether the sweeping allele was identified as being within a WSF outlier window.
 
-\subsection*{\textit{Anopheles gambiae} analysis}
+\subsection{\textit{Anopheles gambiae} analysis}
 
-\subsubsection*{Data processing}
+\subsubsection{Data processing}
 
 We applied our method to whole genome sequencing of \textit{Anopheles gambiae} available through the \ag project \citep{consortium_genome_2020}. Genotype data and metadata were downloaded from the \ag phase 3 (Ag3.0) data release (accessed April 2024; https://malariagen.github.io/vector-data/ag3/ag3.0.html). VCFs relating to 28 sampling sets were merged using \texttt{bcftools} v1.20 \citep{bcftools} and the command ‘merge’ with default options. Metadata were filtered to identify \textit{An. gambiae} individuals as defined in the metadata header: 'aim\_species' and 'taxon'. The merged VCF was filtered to retain only those \textit{An. gambiae} individuals, resulting in 1470 individuals for downstream analyses. Monomorphic sites were removed using \texttt{bcftools} v1.20 and command ‘filter’ with options -e 'AC==0 \textbar\textbar AC==AN'. Finally, the VCF was filtered to retain high quality sites and accessible regions of the genome using the site filters available through Ag3.0. The final VCF contained 83,924,645 polymorphic sites, where 28\% were classified as multiallelic (\textgreater 1 alt allele). 
 
@@ -155,7 +155,7 @@ To reduce impacts of larger-scale population structure, we focused our analysis 
 A recombination map was estimated using \texttt{ReLERNN} v1.0.0 \citep{adrion2020predicting} and mosquito sequences collected from the Central African Republic (CAR) (see Ag3.0 data release). The CAR population was used because sampling among the other \textit{An. gambiae} populations was variable in both time and space. In contrast, CAR had 55 female mosquitoes collected during the same year (1994) and location (Bangui).
 \texttt{ReLERNN} was run on the phased and filtered VCF containing mosquitoes from CAR and a mask file (MASK) denoting the non-accessible regions of the genome. A custom demographic history (DEMO) trajectory for CAR mosquito population was inferred using \texttt{StairwayPlot2} \citep{liu2020stairway}. The classifier was trained using a window size of 26,000bp with default options and setting required parameters: --assumedMu $3.0e-9$ --upperRhoThetaRatio 30 --phased --mask $MASK -n $DEMO. The resulting recombination maps were translated to cM/Mb and HapMap3 format using a custom script \texttt{rho2cMMb.py}. 
 
-\subsubsection*{Spatial genome scan} \label{ag-genome-scan}
+\subsubsection{Spatial genome scan} \label{ag-genome-scan}
 
 We applied our analysis to 687 \textit{An. gambiae} samples from West Africa grouped using \texttt{ADMIXTURE}.
 We recorded the frequency of each variant globally within the sample population
@@ -182,9 +182,9 @@ then used \texttt{ThermoMPNN} to assess how the associated amino acid substituti
 For \textit{CYP4H27}, we used the pairwise structure alignment tool available via \url{www.rcsb.org/alignment} with method \texttt{TM-align} to compare the ancestral and derived versions of the protein \citep{pdb-align}.
 
 
-\section*{Results}
+\section{Results}
 
-\subsection*{A novel spatial signal of selection}
+\subsection{A novel spatial signal of selection}
 
 How does a beneficial allele move across space? 
 An allele under positive selection that arises at a point along the landscape
@@ -253,7 +253,7 @@ allele area is measured as the area of the polygon encompassing allele carriers.
 \label{fig:sweepsim}
 \end{figure}
 
-\subsection*{Power to detect selection using space}
+\subsection{Power to detect selection using space}
 
 We next asked whether we could use this spatial signal to identify alleles under positive selection.
 Given that positive selection has a striking impact on allele area conditioned on frequency,
@@ -310,7 +310,7 @@ The dotted line represents the tenth percentile cutoff for WSF outliers; the gre
 \label{fig:poweranalysis}
 \end{figure}
 
-\subsection*{Spatial signal identifies sweeping alleles in \textit{Anopheles gambiae}}
+\subsection{Spatial signal identifies sweeping alleles in \textit{Anopheles gambiae}}
 
 After demonstrating the potential of this spatial signal to identify positively selected variants,
 we next applied our approach to 
@@ -406,7 +406,7 @@ While there are a number of individual loci that we could highlight, in what fol
 three particularly interesting vignettes of loci that represent strong spatial-frequency outliers in our scan and
 may be of functional consequence (see Figure~\ref{fig:agmissense}).
 
-\subsubsection*{Cytochrome P450 \textit{CYP4H27}}
+\subsubsection{Cytochrome P450 \textit{CYP4H27}}
 
 Cytochromes P450 are frequently implicated in the evolution of insecticide resistance across multiple taxa.
 In \textit{Anopheline} mosquitoes, positive selection linked to Cyp450-associated resistance is most often associated with increased protein expression level due to copy number or transcriptional changes, rather than changes in protein function \citep{Muller2008-fo}.
@@ -426,7 +426,7 @@ and three mosquitoes with both Y274H and V463D segregating together, though we w
 AlphaFold predictions of the S458R and V463D carrying structures suggest these amino acid substitutions occur at the entrance of the ligand binding pocket, shifting its conformation, and that these changes are amplified when in combination with the Y274H mutation.
 Though the phenotypic effects of these three Cyp450 variants needs to be further investigated \textit{in vivo}, their strong signals of positive selection may indicate another Cyp450-mediated mechanism of insecticide resistance.
 
-\subsubsection*{CUB domain-containing protein}
+\subsubsection{CUB domain-containing protein}
 
 A second interesting vignette from our analysis of outlier SNPs was AGAP029542, a relatively undescribed CUB domain-containing protein located on chromosome arm 3R (Figure~\ref{fig:agmissense}B).
 While this gene's function is unknown in \textit{An. gambiae}, its ortholog in \textit{Anopheles stephensi}, XP\_035915664.1, has recently been implicated in contributing to insecticide resistance \citep{Kumar2024}.
@@ -440,7 +440,7 @@ Further, the functional domains of this protein have been shown to be highly con
 making noncoding regions a more likely candidate for positive selection.
 Though more investigation is necessary to uncover the potential role of AGAP029542 in \textit{An. gambiae} insecticide resistance, the density of outlier variants within AGAP029542 uncovered using our analysis highlights the strength of selection scans for generating hypotheses. 
 
-\subsubsection*{Gustatory receptors}
+\subsubsection{Gustatory receptors}
 
 Chemosensory genes play a critical role in regulating insect behavior, and their evolution is implicated in broad phylogenetic as well as population-level adaptation such as avoidance 
 or preference) of compounds such as those derived from plant secondary metabolites \citep[e.g.,][]{matsuo2007odorant}. Beyond identifying an enrichment of sensory genes amongst SF and WSF outliers, we identified six nonsynonymous mutations that were inferred to impact the stability of five gustatory receptors (Figure~\ref{fig:agmissense}C).
@@ -503,7 +503,7 @@ chains are colored from light green at the N terminus to dark green at the C ter
 \label{fig:agmissense}
 \end{figure}
 
-\section*{Discussion}
+\section{Discussion}
 
 
 % 1 recap
