@@ -82,7 +82,23 @@
 % Added by Jacob L. following https://tex.stackexchange.com/questions/148314/undefined-control-sequence-in-printbibliography-biblatex to allow UTF-8 (non-ASCII) characters in the bibliography .bib file.
 \usepackage[utf8]{inputenc}
 \usepackage{hyperref}
+\usepackage{authblk}
+\usepackage{fancyhdr}
+\usepackage{lineno}
+\usepackage{siunitx}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\newcommand{\comment}[1]{{\color{blue} #1}}
+\newcommand{\ag}{Ag1000G }
 
+% for hyperlinks
+
+% for highlighting text
+\usepackage{xcolor}
+\usepackage{soul}
+
+% bibliography
+\usepackage[comma,authoryear,round]{natbib}   % omit 'round' option if you prefer square brackets
 %------------------------------------------------------------------------------%
 % BIBLIOGRAPHY
 %------------------------------------------------------------------------------%
