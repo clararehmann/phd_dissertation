@@ -1,16 +1,60 @@
 % introduction outline
 
-Patterns of genetic diversity within and between populations can be leveraged to reveal their evolutionary history.
+% understanding evolutionary processes is important
 
-Explain the patterns - what do you look for, what does it mean, examples
+% inference of evolutionary processes from patterns of genetic diversity
 
-In real populations, these patterns are also distributed across geographic space, with each individual in a population
- - and their genome - occupying a location on the landscape. 
+% evolutionary processes happen across space
+
+% space is another dimension of information that we can leverage
+
+% in this dissertation, I will leverage spatial population structure to uncover evolutionary processes in malaria parasites and their vectors
+
+% malaria represents a persistent and still rapidly-evolving public health threat
+
+% we need more info to combat it -> SPACE!
+
+% in Ch II...
+
+% In Ch. III...
+
+% In Ch. IV...
+
+
+
+
+\comment{understainding evolutionary processes is important: what has happened in the past can help inform what
+will happen in the future. }
+\comment{To understand past evolutionary events, population genetics relies on analysis of
+ patterns of genetic diversity that we observe in the present.}
+Different evolutionary processes imprint different signatures on the genomes of populations:
+Forces such as mutation, drift, and selection, as well as events such as population size changes or migration, 
+will all drastically impact the patterns of genetic diversity that we observe in natural populations. 
+For example, a beneficial mutation that sweeps to fixation will leave a characteristic pattern of reduced genetic diversity
+by causing nearby linked loci to also increase in frequency alongside the beneficial allele \comment{CITATION}; 
+or migration between two separate populations will lead to shared (introgressed) \comment{is this the right word?} regions
+of the genome that have common patterns of variation between the populations.
+The task of population genetics is to leverage these signatures in order to infer the evolutionary history they represent.
+
+In natural populations, these patterns of genetic diversity are also distributed across geographic space, 
+with each individual in a population - and their genome - occupying a location on the landscape. 
 As evolutionary time plays forward, these individuals interact, reproduce, and disperse locally, giving rise to spatial 
 genetic structure within populations: in short, individuals that are closer spatially tend to also be closer genetically.
-While this pattern, termed "isolation by distance" by Sewall Wright \comment{CITATION}, is ubiquitous in natural populations and 
-can confound and evolutionary inference, understanding the influence of spatial structure on observed patterns of genetic diversity
-also adds another dimension of information that can be leveraged to uncover the evolutionary processes acting on organisms.
+This phenomenon, termed "isolation by distance" by Sewall Wright \comment{CITATION}, is ubiquitious in natural populations
+and has been well-documented across a wide variety of taxa \comment{CITATIONS}.
+However, despite its prevalence in natural populations, much of our contemporary understanding of
+evolutionary processes is still informed by models that do not account for this spatial population structure \comment{CITATIONS}.
+While the simplifying assumption that all individuals in a population are equally likely to mate regardless
+of their spatial location makes evolutionary models more tractable, it obscures a key component of the population's
+evolutionary history and can confound inference of evolutionary processes from genetic data \comment{CITATIONS}.
+Further, understanding the relationship between spatial structure and 
+observed patters of genetic diversity adds another dimension of information that can be leveraged to uncover
+the evolutionary forces acting on populations. 
+Spatial patterns of genetic variation have been successfully used to infer migration rates, estimate population sizes, and
+detect selection \comment{CITATIONS};
+however, the finer-scale patterns of spatial genetic structure now observable in genomic datasets remain unexplored in many contexts.as
+
+
 
 \comment{This dissertation focuses on leveraging spatial population structure to uncover and describe evolutionary processes 
 in the malaria parasite, \textit{Plasmodium}, and its mosquito vector, \textit{Anopheles}.}
@@ -25,3 +69,51 @@ of \textit{Anopheles} species can now reveal \comment{when and how often these m
 In these organisms, \comment{incorporating spatial information} into our understanding of their genetic diversity and evolutionary histories
 adds another layer of data that \comment{will help us uncover processes that go undetected using standard population genetic methods}.
 
+In Chapter II, I combine a machine learning method for prediction of location from genotype data, called \texttt{Locator}, 
+with forward-in-time, continuous-space, individual-based simulations to investigate and identify evidence for 
+common patterns of dispersal between \textit{Anopheles gambiae} and \textit{Plasmodium falciparum}.
+When using \texttt{Locator} to predict locations of \textit{An. gambiae} and \textit{P. falciparum} from genotypic data, 
+we observed similar patterns of prediction errors, which I discovered were significantly correlated between host and parasite across space. 
+Because errors in predictions obtained using \texttt{Locator} tend to reflect the locations of a sample's ancestors, 
+we hypothesized that the correlation in errors between \textit{An. gambiae} and \textit{P. falciparum} 
+may be due to common migration patterns - however, the observed correlation could also be due to spatial bias in the distribution
+of sampling locations. After confirming that spatial bias in sampling locations can indeed lead to biased predictions,
+I developed a sample weighting method to correct for this bias and reduce the influence of training set distributions on predictions.
+Significant correlations between prediction errors persist 
+when this method is applied to \textit{An. gambiae} and \textit{P. falciparum}, providing further evidence for
+these predictions reflecting shared patterns of dispersal across the landscape, particularly in West Africa.
+This observation of common dispersal patterns between host and parasite across short evolutionary timescales is novel 
+and has important implications for understanding patterns of gene flow and the spread of adaptive alleles in both species.
+\comment{This work was published in \textit{G3 | Genes | Genomes | Genetics} in 202X and is co-authored by 
+Peter L. Ralph and Andrew D. Kern.}
+
+
+Investigating patterns of dispersal in \textit{Anopheles} and \textit{Plasmodium}, \comment{I became interested in how beneficial variants
+were spreading through these spatially-structured populations.}
+Positive selection plays a fundamental role in shaping variation in natural populations, and the 
+rapid spread of beneficial alleles (a process called a "selective sweep") is responsible for many instances of adaptation.
+This evolutionary process is particularly important to understand in the context of malaria control efforts, as both the parasite
+and its vector are rapidly evolving to counter human interventions such as insecticides and antimalarial drugs.
+While the impact of spatial population structure on the spread of beneficial mutations has been understood theoretically \comment{fisher citation},
+much of our contemporary understanding of spatial selective sweeps is in regards to how spatial structure obscures 
+the signatures of selection that we look for in genetic datasets \comment{citations}
+In Chapter III, I use continuous-space simulation to identify a spatial signature of positive selection, then use this
+observation to develop a method to identify sweeping alleles in spatially-referenced genetic datasets. 
+In simulations of selective sweeps, I observed that positively-selected alleles tend to occupy less of the landscape than
+neutral alleles at the same frequency. 
+While counterintuitive, this \comment{observation} can be explained by the fact that neutral alleles, if not lost,  
+will spread through a population - and across the landscape - without increasing in frequency.
+Positively-selected alleles, on the other hand, will inherently increase in frequency as they sweep through the population, and this 
+increase in frequency outpaces their spatial spread. 
+Using this \comment{observation}, I develop an approach to detect positively-selected alleles as outliers to the 
+genome-wide spatial-frequency distribution of genetic variants.
+Applying this approach to \textit{Anopheles gambiae}, we identify multiple positively selected and functionally impactful 
+variants segregating the population, including variants within known insecticide-resistant loci, 
+potentially novel sources of insecticide resistance, and other potentially selected variants
+associated with immune response, sensory perception, and development.
+This work provides a novel method for identifying positively-selected alleles in spatially-structured populations and demonstrates
+the potential of spatial information to inform, rather than obscure, our understanding of evolutionary processes.
+\comment{This work was published in \textit{Molecular Biology and Evolution} in 2025 and is co-authored by Scott T. Small, Peter L. Ralph, and Andrew D. Kern.}
+
+\textit{Anopheles gambiae} exists as part of a broader \comment{family} of malaria vectors, and in Chapter IV, I use comparative methods to investigate the
+evolutionary forces driving the vast amount of polymorphism observed amongst \textit{Anopheles} malaria vectors. 

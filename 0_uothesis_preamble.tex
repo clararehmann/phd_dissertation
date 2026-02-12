@@ -1,10 +1,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                              %
 %       This is the beginning of a uothesisapa Dissertation                    %
 %                                                                              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \errorcontextlines 10000 % Get more logging information on errors. Following http://tex.stackexchange.com/a/83485/56363, if after setting this you see an error, "Note that the order is 'from inner to outer', that is, the first (non-indented) line is the point where the error actually occurred. The line after that (indented) is the part of that line which isn't yet processed, so the point of error is exactly at the line break."
 
@@ -51,9 +51,9 @@
 %     - ...and probably more.
 
 % Examples:
-\documentclass[dissertation, final, approved, apacite, copyright]{uothesis} % For final copies
+%\documentclass[dissertation, final, approved, apacite, copyright]{uothesis} % For final copies
 
-%\documentclass[dissertation, draftcopy]{uothesis} % For draft copies (enables line numbering, and puts black bars where there is text that overflows a line where latex can't figure out how to break it onto another line (in non-draft modes, this will result in an "overfull hbox" error, so draft mode is a good way of spotting these, following http://tex.stackexchange.com/a/39/56363)
+\documentclass[dissertation, draftcopy]{uothesis} % For draft copies (enables line numbering, and puts black bars where there is text that overflows a line where latex can't figure out how to break it onto another line (in non-draft modes, this will result in an "overfull hbox" error, so draft mode is a good way of spotting these, following http://tex.stackexchange.com/a/39/56363)
 
 %\documentclass[msthesis, lackscommittee, approved, final]{uothesis} % Example for Masters thesis that does not include a committee.
 
@@ -98,7 +98,7 @@
 \usepackage{soul}
 
 % bibliography
-\usepackage[comma,authoryear,round]{natbib}   % omit 'round' option if you prefer square brackets
+%\usepackage[comma,authoryear,round]{natbib}   % omit 'round' option if you prefer square brackets
 %------------------------------------------------------------------------------%
 % BIBLIOGRAPHY
 %------------------------------------------------------------------------------%
