@@ -52,22 +52,23 @@ observed patters of genetic diversity adds another dimension of information that
 the evolutionary forces acting on populations. 
 Spatial patterns of genetic variation have been successfully used to infer migration rates, estimate population sizes, and
 detect selection \comment{CITATIONS};
-however, the finer-scale patterns of spatial genetic structure now observable in genomic datasets remain unexplored in many contexts.as
+however, the finer-scale patterns of spatial genetic structure now observable in genomic datasets remain unexplored in many contexts.
 
 
 
 \comment{This dissertation focuses on leveraging spatial population structure to uncover and describe evolutionary processes 
 in the malaria parasite, \textit{Plasmodium}, and its mosquito vector, \textit{Anopheles}.}
-% this is just gonna be bad writing that i'll workshop
-Despite recent advances in treatments, vaccines, and XYZ, malaria remains a persistent public health threat, particularly in sub-Saharan Africa.
-Understanding the evolutionary histories of these species is crucial for malaria control efforts: both the parasite and vector
-in this system are rapidly evolving to counter human efforts to curb the spread of disease.
-Antimalarial resistance has been reported in \comment{XYZ strains, N number of times...}, and \textit{Anopheles} species readily
-evolve resistance to insecticides deployed for vector control.
-Vector control efforts in particular are critical for containing the spread of malaria, and extensive genomic surveillance
-of \textit{Anopheles} species can now reveal \comment{when and how often these mosquitoes are adapting to human interventions}.
-In these organisms, \comment{incorporating spatial information} into our understanding of their genetic diversity and evolutionary histories
-adds another layer of data that \comment{will help us uncover processes that go undetected using standard population genetic methods}.
+Malaria is an ancient human disease that remains a persistent public health threat despite recent advances in 
+treatments, vaccines, and vector control efforts.
+Both the parasite and its vector rapidly evolve to counter human interventions, making understanding their 
+evolutionary histories and trajectories crucial to effective disease prevention strategies.
+Vector control efforts in particular are critical for containing the spread of malaria,
+and extensive genomic surveillance of \textit{Anopheles} species now allows us to not only understand 
+the population structure of these mosquitoes, but also to identify when and how they are adapting to human interventions
+such as insecticides.
+Using \comment{extensive} spatial population genomic datasets of \textit{Anopheles} and \textit{Plasmodium}, I 
+investigate patterns of dispersal, selection, polymorphism, and divergence in this system,
+focusing on how incorporating spatial information into genetic analyses helps uncover processes that would otherwise go undetected.
 
 In Chapter II, I combine a machine learning method for prediction of location from genotype data, called \texttt{Locator}, 
 with forward-in-time, continuous-space, individual-based simulations to investigate and identify evidence for 
@@ -96,7 +97,7 @@ This evolutionary process is particularly important to understand in the context
 and its vector are rapidly evolving to counter human interventions such as insecticides and antimalarial drugs.
 While the impact of spatial population structure on the spread of beneficial mutations has been understood theoretically \comment{fisher citation},
 much of our contemporary understanding of spatial selective sweeps is in regards to how spatial structure obscures 
-the signatures of selection that we look for in genetic datasets \comment{citations}
+the signatures of selection that we look for in genetic datasets \comment{citations}.
 In Chapter III, I use continuous-space simulation to identify a spatial signature of positive selection, then use this
 observation to develop a method to identify sweeping alleles in spatially-referenced genetic datasets. 
 In simulations of selective sweeps, I observed that positively-selected alleles tend to occupy less of the landscape than
@@ -115,5 +116,38 @@ This work provides a novel method for identifying positively-selected alleles in
 the potential of spatial information to inform, rather than obscure, our understanding of evolutionary processes.
 \comment{This work was published in \textit{Molecular Biology and Evolution} in 2025 and is co-authored by Scott T. Small, Peter L. Ralph, and Andrew D. Kern.}
 
-\textit{Anopheles gambiae} exists as part of a broader \comment{family} of malaria vectors, and in Chapter IV, I use comparative methods to investigate the
-evolutionary forces driving the vast amount of polymorphism observed amongst \textit{Anopheles} malaria vectors. 
+\textit{Anopheles gambiae} exists as part of a broader \comment{family} of malaria vectors, and in Chapter IV, I use 
+a comparative approach to investigate the
+evolutionary forces driving patterns of polymorphism and divergence in \textit{Anopheles} malaria vectors. 
+Phylogenetic analysis of \textit{Anopheles} vectors has highlighted their rapid rate
+of genome evolution, while population genomic analyses of \textit{Anopheles} species have revealed that 
+these mosquitoes are incredibly polymorphic and segregating many potentially adaptive variants.
+Focusing on nonsynonymous polymorphism and divergence in two major African vectors (\textit{Anopheles gambiae} and \textit{funestus}) 
+and one major Asian vector (\textit{Anopheles minimus}), 
+I explore what genes and biological processes are evolving under directional selection in these species
+and identify how \comment{patterns} of polymorphism reflect similar evolutionary pressures.
+I find that genes involved in sensory perception, immune response, and insecticide resistance are
+both rapidly evolving under directional selection in all three species and segregating high amounts of nonsynonymous polymorphism,
+suggesting that the variation maintained by \textit{Anopheles} populations may be important for adaptation to rapidly-changing
+environments and selection pressures.
+Using patterns of spatial differentiation in nonsynonymous polymorphism, I also identify candidate genes that may be adapting
+to local selection pressures in both \textit{Anopheles gambiae} and \textit{Anopheles funestus}, including mutations with 
+similar molecular impacts and spatial distributions in two 
+cytochrome P450 enzymes, which are known to be involved in metabolic insecticide resistance.
+My work in this chapter provides insight into the evolutionary forces shaping patterns of polymorphism and divergence in 
+\textit{Anopheles} malaria vectors and highlights the importance of considering spatial population structure when investigating these processes.
+\comment{This study is in preparation for publication and is co-authored by Peter L. Ralph and Andrew D. Kern.}
+
+Overall, my dissertation explores how spatial population structure can be leveraged to better understand evolutionary processes
+in \textit{Anopheles} malaria vectors and their \textit{Plasmodium} parasites, 
+with important implications for understanding how these species are adapting in response to human interventions.
+Chapter II provides some of the first evidence for co-geography between \textit{Anopheles} and \textit{Plasmodium},
+suggesting that these species are dispersing in similar trajectories and that their evolutionary histories are intertwined across space.
+In Chapter III, I identify a novel spatial signature of positive selection and use this observation to develop and apply a method
+for detecting positively-selected alleles in \textit{Anopheles gambiae}, identifying multiple novel candidate insecticide resistance alleles.
+Finally, Chapter IV uses a comparative approach to identify and describe the evolutionary forces driving divergence and shaping
+patterns of polymorphism across three major \textit{Anopheles} malaria vectors, highlighting how variable selection pressures
+across space may be maintaining important variation in these species.
+Together, this work demonstrates the potential of spatial information to inform our understanding of evolutionary processes
+in natural populations and provides insight into the evolutionary dynamics of malaria parasites and their mosquito vectors.
+
