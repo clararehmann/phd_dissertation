@@ -63,9 +63,9 @@
 \usepackage[USenglish,UKenglish]{babel}
 \usepackage{mathtools,amsmath,amsfonts,amsthm,amssymb,bm, bbm}
 \usepackage{dcolumn,booktabs,longtable}
-\usepackage[singlelinecheck=false]{caption}
-  \captionsetup[subfigure]{singlelinecheck=on, labelfont=normalfont}
-  \captionsetup[figure]{labelfont=it}
+%\usepackage[singlelinecheck=false]{caption}
+%  \captionsetup[subfigure]{singlelinecheck=on, labelfont=normalfont}
+%  \captionsetup[figure]{labelfont=it}
 \usepackage{placeins}
 \usepackage{graphicx}
 \usepackage[space]{grffile} % allow spaces in graphics filenames.
@@ -98,7 +98,6 @@
 \usepackage{soul}
 
 % bibliography
-%\usepackage[comma,authoryear,round]{natbib}   % omit 'round' option if you prefer square brackets
 %------------------------------------------------------------------------------%
 % BIBLIOGRAPHY
 %------------------------------------------------------------------------------%
@@ -118,7 +117,9 @@
 %
 %--- Or, if you want to change the citation style to e.g. acm
 % \bibliographystyle{acm}
-
+%\usepackage[comma,authoryear,round]{natbib}   % omit 'round' option if you prefer square brackets
+\usepackage[natbib=true,backend=bibtex,sorting=nyt,style=apa,sortcites=true]{biblatex}
+\addbibresource{refs_cleaned.bib}
 %------------------------------------------------------------------------------%
 % MATH EQUATIONS AND THEOREMS (.cls also restructures theorem layout)
 %------------------------------------------------------------------------------%
