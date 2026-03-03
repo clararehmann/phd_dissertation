@@ -6,23 +6,76 @@
 
 In this dissertation, I use spatial patterns of variation in  
 \textit{Anopheles} malaria vectors in order to 
-uncover spatial evolutionary dynamics that drive adaptation and divergence across their ranges.
+uncover evolutionary dynamics that drive adaptation and divergence across their ranges.
 
 In Chapter II, I present our work using correlated patterns of machine learning
 prediction errors to infer common patterns of dispersal between \textit{Anopheles gambiae} 
 mosquitoes and their \textit{Plasmodium falciparum} parasites. 
-Being concerned about how the spatial distribution of training data impacted 
-and biased our inferences, I assessed and then developed methods to reduce
-these effects. When correcting for spatial bias in empirical sampling data,
+Applying \texttt{Locator} --- a machine learning method for predicting geographic origin from genetic data ---
+to spatially-referenced genomic datasets of both vector and parasite,
+I find that prediction errors are significantly correlated across space between the two species,
+suggesting that they share common dispersal patterns.
+Using continuous-space simulation, I investigate the circumstances that
+can lead to biased errors in spatial prediction and develop methods 
+to reduce these effects when applying this approach to empirical data.
+After correcting for spatial bias in empirical sampling data,
 correlations between \textit{Anopheles gambiae} and \textit{Plasmodium falciparum} residuals persist,
-suggesting that these prediction errors reflect shared dispersal patterns 
-between host and parasite.
+providing evidence that these prediction errors reflect shared dispersal patterns 
+between vector and parasite. This work uncovers previously unobserved co-geographic structure shared by
+the malaria parasite and its vector on short evolutionary timescales, with 
+implications for understanding disease transmission dynamics and vector control strategies in this system.
 
 Given these findings, I became interested in how adaptive alleles
 are spreading through these spatially-structured populations. In
-Chapter III, I discover a spatial signal of positive selection through 
-continuous-space simulation and use this observation to develop a method for 
-detecting adaptive alleles in spatially-structured populations.
-Applying this method to \textit{Anopheles gambiae}, I identify several 
+Chapter III, I use continuous-space simulation of selective sweeps to 
+discover a spatial signal of positive selection: I find that due to the 
+wave-like nature of their spread, positively-selected alleles take up less
+geographic area than neutral alleles at the same frequency.
+Using this observation, I develop a method to 
+detect adaptive alleles as 'space-frequency' outliers in spatially-structured populations.
+Applying this method to \textit{Anopheles gambiae} populations in 
+West Africa, I identify several 
 novel alleles that appear to be under positive selection, including several 
-at loci associated with insecticide resistance.
+functionally-relevant variants at loci associated with insecticide resistance.
+This work demonstrates the potential of leveraging spatial population genetic structure to identify 
+evolutionary processes, and the method I present here has relevance for
+detecting adaptive alleles in a wide range of spatially-structured populations.
+In \textit{Anopheles gambiae} in particular, this work provides insight into novel
+genomic features that may be contributing to insecticide resistance and 
+introduces a novel approach for identifying adaptive variants in this system.
+
+\textit{Anopheles gambiae} is one of many \textit{Anopheles} species that transmit malaria,
+and many of these species are segregating large amounts of potentially-adaptive variation.
+In Chapter IV, I use a gene-focused comparative population genetic approach to 
+investigate the evolutionary forces that shape patterns of variation and divergence in three 
+major \textit{Anopheles} malaria vectors: African \textit{Anopheles gambiae} and \textit{funestus}, and Asian \textit{minimus}.
+Focusing on patterns of nonsynonymous polymorphism and divergence
+reveals common selection pressures acting on these deeply-diverged vectors to both maintain 
+functional variation within and drive adaptive divergence between species, with immune and metabolic functions 
+being particularly affected across a broad range of evolutionary timescales.
+The biological functions that show evidence of both diversifying and directional selection 
+are often shared across species and include many mechanisms of insecticide resistance, such as 
+metabolic detoxification and cuticular resistance.
+Investigating the spatial patterns of diversifying selection acting on \textit{Anopheles gambiae} and \textit{funestus},
+I uncover two proteins involved in insecticide resistance that share convergent spatial and molecular patterns of variation,
+demonstrating how local adaptation maintains functional variation in these relevant pathways.
+This work provides insight into the parallel evolutionary forces that shape patterns of variation 
+across these deeply-diverged malaria vectors, highlighting how the functional polymorphism maintained 
+by local adaptation and balancing selection provides an abundant source of potentially-adaptive variation 
+for rapid evolutionary responses to novel or intensified selection pressures.
+
+Overall, this dissertation provides insight into how spatial population structure can be 
+leveraged in genetic studies to uncover evolutionary phenomena in the \textit{Anopheles} malaria vector system
+and beyond.
+In Chapter II, I use correlated patterns of machine learning prediction errors to identify and confirm
+co-geographic structure between \textit{Anopheles gambiae} and \textit{Plasmodium falciparum}, 
+\comment{identifying} a previously undescribed pattern of shared dispersal between vector and parasite.
+In Chapter III, I use continuous-space simulation to identify a novel spatial signature of selective sweeps
+and apply this observation to identify positively-selected alleles in \textit{Anopheles gambiae}.
+Finally, in Chapter IV, I use a comparative, gene-focused approach to investigate the evolutionary forces
+shaping patterns of variation and divergence in three major \textit{Anopheles} vectors, 
+uncovering common selection pressures across these deeply-diverged species and identifying 
+convergent local adaptation to insecticide pressures.
+The novel methods and approaches I present in this dissertation have relevance for a wide range of 
+spatially-structured populations, and the insights into the \textit{Anopheles} system I present here
+further our understanding of these important vectors and may inform future vector control strategies. 
