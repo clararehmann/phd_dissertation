@@ -1,0 +1,1132 @@
+\renewcommand{\bibfont}{\fontsize{10}{12}\selectfont}
+\newcommand{\Anopheles}{\textit{Anopheles}}
+\section{Introduction}
+
+The \textit{Anopheles} mosquitoes that transmit human malaria
+are among the most medically important insects on earth,
+yet they remain remarkably difficult to control.
+The genus is deeply diverged:
+new world \textit{Anopheles} split from old world lineages
+approximately 100 million years ago (MYA),
+and more recent radiations across Africa and Asia
+have given rise to a number of major vector species
+and species complexes.
+Recent population genomic studies have begun to characterize
+the genetic diversity and evolutionary histories of these species
+\citep{anopheles_comparative, darlingi, funestus, gambiae, minimus},
+revealing a consistent pattern:
+\textit{Anopheles} vectors are highly adaptable
+and readily evolve to counter vector control efforts
+\citep{gambiae, funestus}.
+Understanding how these mosquitoes adapt so rapidly requires understanding
+the evolutionary forces that shape patterns of genetic variation
+across the genus.
+
+Comparative genomic studies across the genus have revealed a striking capacity for genomic change:
+\textit{Anopheles} genomes exhibit faster rates of gene gain and loss,
+elevated gene shuffling on the X chromosome,
+and rapid diversification of genes involved in chemosensation,
+immunity, and insecticide detoxification \citep{anopheles_comparative}.
+These patterns point to a genus whose genomes are unusually dynamic,
+but they describe evolution between species
+and leave open the question of what is happening within them.
+
+While phylogenetic study of \textit{Anopheles} evolution has revealed the genus's evolvability
+and highlighted the rapid rate at which their genomes adapt,
+population genetics studies suggest that this evolvability may be due in part
+to exceptionally high levels of segregating polymorphism.
+In the African major vector \textit{Anopheles gambiae},
+individual mosquitoes have 1.7 to 2.7 million variant sites
+and 21\% of variants identified are triallelic;
+in another major African vector \textit{An. funestus},
+individuals have 2 to 3 million variant sites
+and 15\% of variants have more than two alleles \citep{gambiae, funestus}.
+Similar levels of diversity and proportions of multiallelic sites
+have been reported in \textit{Anopheles minimus}, a major vector across Southeast Asia,
+and \textit{An. darlingi}, the primary malaria vector in South America \citep{darlingi, minimus}.
+Despite high amounts of global polymorphism,
+these population genetic surveys have identified many instances of selection
+acting on local populations,
+particularly regarding adaptation to insecticides
+\citep{Xue_Schrider_Kern_2021, Clarkson_Miles_Harding_2021, Barnes_Weedall_Ndula_2017}.
+This raises the question of what forces maintain polymorphism in these populations
+while also allowing for rapid adaptation to local environmental pressures.
+In most systems, nonsynonymous polymorphism is assumed to be mildly deleterious,
+maintained by drift and purged inefficiently in small populations.
+\textit{Anopheles} mosquitoes, however, have massive effective population sizes
+spread across heterogeneous environments
+with differential exposure to vector control measures across space.
+We would therefore expect selection to act efficiently in these species,
+both fixing beneficial alleles and removing deleterious ones.
+Despite this, \textit{Anopheles} populations continue to segregate large amounts of nonsynonymous variation,
+suggesting that some of this polymorphism may not be deleterious
+but instead actively maintained by selection.
+
+What is missing is a comparative, gene-level understanding
+of nonsynonymous variation across \textit{Anopheles} species ---
+which genes are segregating functional polymorphism,
+how that polymorphism relates to directional selection along lineages,
+and whether similar selective pressures - in particular, vector control efforts -
+ are producing convergent patterns
+across deeply diverged vectors.
+Here, we address these questions using two African species
+(\textit{An. gambiae} and \textit{An. funestus})
+and one Asian species (\textit{An. minimus}) (Figure \ref{fig:popdist}A).
+The lineage leading to \textit{An. gambiae} diverged 30--50 MYA
+and has more recently radiated into the \textit{gambiae} species complex,
+while \textit{An. funestus} and \textit{An. minimus} are more closely related,
+diverging approximately 22 MYA (Figure \ref{fig:popdist}B) \citep{anopheles_comparative}.
+\textit{An. gambiae} and \textit{An. funestus} occupy similar ranges in sub-Saharan Africa
+and are both highly anthropophilic;
+they differ in larval site preference
+but are jointly responsible for the majority of the continent's malaria burden,
+transmitting primarily \textit{Plasmodium falciparum}.
+\textit{An. minimus}, by contrast,
+is a major vector in the Greater Mekong Subregion of Southeast Asia
+with variable behavior and habitat preference;
+it transmits primarily \textit{Plasmodium vivax} \citep{anophelesbook}.
+All three species occupy heterogeneous environments
+with variable insecticide exposure across both space and time.
+Investigating both population genetic dynamics and
+patterns of divergence, we identify parallel and convergent 
+selection pressures that act on these highly-diverged vectors and shape their 
+evolutionary trajectories.
+We find that genes involved in immune response, insecticide resistance,
+redox metabolism, cuticle formation, and sensory perception
+both harbor excess nonsynonymous polymorphism within species
+and are evolving under directional selection along lineages.
+In \textit{An. gambiae} and \textit{An. funestus},
+we further identify convergent spatial patterns of nonsynonymous differentiation
+at two cytochrome P450 loci involved in insecticide resistance,
+with parallel molecular changes in both species.
+Together, these results suggest that local adaptation maintains
+a reservoir of functional nonsynonymous variation in \textit{Anopheles},
+providing substrate for rapid evolutionary responses
+when selection pressures intensify or shift.
+
+
+\begin{figure}[htp]
+\includegraphics[width=\linewidth]{{figures/anopheles_tree.pdf}}
+\centering
+\caption{(A) Geographic distribution and (B) phylogeny of \textit{Anopheles gambiae}, \textit{funestus}, and \textit{minimus}.
+}
+\label{fig:popdist}
+\end{figure}
+
+\section{Methods}
+
+\subsection{Genomic data \& processing} \label{sec:geno}
+
+\textit{An. gambiae, funestus,} and \textit{minimus} population genetic datasets were obtained from the MalariaGen Vector Observatory.
+All population VCFs were merged and then filtered (in the case of \textit{An. gambiae} and \textit{funestus}) using the provided site filters. 
+Genome annotations were obtained in GFF format from VectorBase and processed using \texttt{gffutils 0.13}; reference genome and proteome sequences were obtained in Fasta format from VectorBase.
+For all genes, the longest transcript was used for coding sequence analysis.
+
+Prior to comparing patterns of nonsynonymous polymorphism and fixation between species, we identified one-to-one orthologs between \textit{An. gambiae, funestus}, and \textit{minimus} using \texttt{SonicParanoid 2.1.9} and aligned the protein sequence of all samples for a given ortholog using \texttt{MUSCLE 5.3}. Aligned amino acid sequences were mapped back to aligned nucleotide coding sequences using \texttt{Bio.Align.CodonAligner} from \texttt{BioPython 1.85}.
+
+\subsection{Population genetics methods}
+
+\subsubsection{Within species}
+
+For every protein-coding gene in each species, we calculated within-species
+ population genetics statistics considering the following sequences: 
+the entire length of the gene, the coding sequence, the amino acid sequence, 
+nonsynonymous sites ($N$), and synonymous sites ($S$). 
+Tajima's $D$, nucleotide diversity ($\pi$), %Watterson's $\theta$, 
+and Weir and Cockerham's $F_{ST}$ were calculated using a custom Python library, 
+\texttt{WGSstats}, based on functions available in \texttt{scikit-allel} and \texttt{BioPython} 
+(available at \comment{github URL}). 
+For \textit{An. gambiae} and \textit{An. funestus}, statistics except for $F_{ST}$ 
+were calculated on spatial cohort groups predetermined by the MalariaGEN data release 
+\citep{gambiae, funestus} and then averaged across cohorts in order to minimize the impact of 
+rare variants; for \textit{An. minimus} all samples were used at once.
+To assess the relationship between nonsynonymous and genic statistics,
+ we fit linear models using the \texttt{stats} R package with the formula 
+ $X_{N} \sim 0 + X_{G}$ where $X_{N}$ is the statistic for nonsynonymous sites 
+ sand $X_{G}$ is the statistic for the entire gene \citep{Rstats}.
+We obtained $p$ values for each statistic based on their relationship to the 
+overall within-species distribution and corrected for FDR using the Benjamini-Hochberg method. 
+Outlier genes were then identified as genes with $p < 0.05$ for $D_N$, $\pi_N$, $F_{ST_{N}}$, 
+and as genes with ${p_{N}}/{p_{S}} > 1$ for nonsynonymous to synonymous polymorphism ratios.
+To test for GO term enrichment amongst outlier genes, performed gene set enrichment analysis 
+using R package \texttt{topGO} \citep{RtopGO} and GO term 
+annotations obtained from VectorBase \citep{vectorbase}.
+To test for the statistical significance of overlap between lists of outlier genes, 
+we used R package \texttt{SuperExactTest} \citep{Rset}.
+
+\subsubsection{Between species} \label{sec:between}
+
+We performed polarized gene-wise McDonald-Kreitman tests on each one-to-one 
+ortholog identified in \nameref{sec:geno} using Python package \texttt{mkado} (\url{https://pypi.org/project/mkado/}). 
+In order to reduce the influence of rare variants on our analysis, we used a subset 
+of samples from each species selected from the same geographic region and time to conduct the test. 
+For \textit{An. gambiae} we used the AG1000G-GN-A cohort, for \textit{funestus} we 
+used set 1230-VO-GA-CF-AYALA-VMF00045, and for \textit{minimus} we used samples 
+taken from coordinate location $(13.667, 104.982)$ in 2014.
+For \textit{An. gambiae}, we used \textit{funestus} as an outgroup and polarized 
+using \textit{An. minimus}; for \textit{An. funestus} we used \textit{gambiae} as an 
+outgroup and polarized using \textit{An. minimus}; for \textit{An. minimus} we used
+ \textit{funestus} as an outgroup and polarized using \textit{An. gambiae}.
+With \texttt{mkado}, we also performed asymptotic genome-wide McDonald-Kreitman 
+tests using the same ingroup-outgroup-polarization pairings.
+
+To test for positive selection along the \textit{gambiae}, \textit{funestus}, and \textit{minimus} 
+branches, we performed multi-ratio branch model tests on each one-to-one ortholog with the 
+focal species as the foreground branch using \texttt{crabML} \citep{crabml2025, yang2007paml}. 
+In order to account for the high degree of polymorphism within species, we ran ten test 
+replicates for each gene, using randomly-chosen samples from each species as representative inputs. 
+
+\subsubsection{$F_{ST}$ correlation} \label{sec:fst}
+
+To investigate spatial correlation between orthologous nonsynonymous $F_{ST}$ outlier genes in \textit{An. gambiae} and \textit{funestus}, 
+we calculated pairwise Hudson's $F_{ST_{N}}$ (within each species) between clusters of sampling points for each gene.
+Sample clusters were identified using an HDBSCAN algorithm implemented through \texttt{scikit-learn} with a minimum cluster size of five individuals.
+To identify the average spatial axis of genetic differentiation for a given gene, we then treated each cluster pair as a west$\rightarrow$east vector and averaged these vectors, weighted by their $F_{ST_{N}}$:
+$$\bar{(x_{F_{ST_{N}}}, y_{F_{ST_NS}}}) =\frac{\sum_{i=1}^{n}{F_{ST_{NS_i}} (x_{i1}, y_{i1}, x_{i2}, y_{i2})}}{\sum_{i=1}^{n}{F_{ST_{NS_i}}}}$$
+We then tested for spatial similarity between \textit{An. gambiae} and \textit{funestus} differentiation using the cosine similarity between average $F_{ST}$ vectors for a given pair of orthologs.
+To test for significance, we randomly permuted the $F_{ST_{N}}$ values used to calculate the average $F_{ST_{N}}$ vector ($N=1000$) and compared observed and permuted cosine similarities.
+
+For genes with significantly similar nonsynonymous $F_{ST}$,
+ we probed which mutations were driving west$\rightarrow$east differentiation by 
+ calculating $F_{ST}$ between western and eastern sampling locations for each nonsynonymous mutation. 
+ Mutations with $F_{ST}$ greater than 0.2 were considered driving 
+ mutations and retained for further analysis. To identify convergent driving 
+ mutations between \textit{An. gambiae} and \textit{funestus}, 
+ we analyzed the spatial distribution of each variant and used 
+ \texttt{ThermoMPNN} to assess the impacts of mutations on protein stability \citep{thermompnn}.
+
+\section{Results}
+
+\subsection{Nonsynonymous polymorphism is abundant and enriched for immune, sensory, and metabolic functions}
+
+To characterize nonsynonymous variation within each species,
+%we first examined genome-wide patterns of polymorphism, site frequency spectra,
+we examined patterns of polymorphism, site frequency spectra, 
+and spatial differentiation at nonsynonymous sites
+relative to genic and synonymous baselines.
+Reported genome-wide nucleotide diversity is high in all three species:
+$\pi =1.5\times10^{-2}$  in \textit{An. gambiae}, between
+$1.4\times10^{-2}$ and $1.5\times10^{-2}$ in \textit{An. funestus},
+and between $1.3\times10^{-2}$ and $1.4\times10^{-2}$ in \textit{An. minimus},
+consistent with their large effective population sizes \citep{gambiae, funestus, minimus}.
+In our analysis, genic $\pi$ ($\pi_G$) is approximately equal to genome-wide $\pi$ in each species --- 
+except for in \textit{An. gambiae}, where it is slightly higher ---
+and nonsynonymous $\pi$ ($\pi_{N}$) is one order of magnitude lower than $\pi_G$
+($\pi_{N} =2.58\times10^{-3}$, $4.17\times10^{-3}$,
+and $4.10\times10^{-3}$ for \textit{gambiae}, \textit{funestus},
+and \textit{minimus}, respectively) (Figure \ref{fig:popstats}, Table \ref{table:statstable}).
+For comparison, genome-wide $\pi$ in African \textit{D. melanogaster}
+is $7.5\times10^{-3}$,
+with $\pi_N = 1.5\times10^{-3}$ and $\pi_S = 1.9\times10^{-2}$ \citep{drosophila}.
+Nonsynonymous $\pi$ in \textit{An. gambiae} is thus almost double that of
+African \textit{D. melanogaster};
+despite \textit{An. gambiae}'s substantially higher genic diversity,
+in \textit{An. funestus} and \textit{minimus}
+$\pi_{N}$ is higher still.
+Nonsynonymous $\pi$ is significantly correlated with gene-wide and synonymous $\pi$
+in all three species (Figure \ref{fig:pilm}).
+However, the relationship between nonsynonymous and genic polymorphism differs among species:
+\textit{An. gambiae} appears more constrained,
+while \textit{An. funestus} and \textit{An. minimus} show lower genic $\pi$
+but higher nonsynonymous $\pi$.
+
+Turning to the site frequency spectrum,
+almost all genes in each species have negative Tajima's $D$ values
+(median $D_G =$ -1.48, -1.38, -1.83
+and median $D_{N} =$ -1.97, -1.88, -2.27
+for \textit{gambiae}, \textit{funestus}, and \textit{minimus}, respectively),
+consistent with recent population expansions.
+Negative genome-wide Tajima's $D$ is also observed in \textit{D. melanogaster},
+where it is driven primarily by linked selection
+rather than demography \citep{drosophila}.
+Although across the genome the distribution of nonsynonymous Tajima's $D$
+is shifted below genic Tajima's $D$ in each species,
+modeling the per-gene relationship between nonsynonymous and genic $D$
+reveals that individual genes tend to have higher nonsynonymous than genic $D$
+($\beta = 1.227, 1.237, 1.173$ for \textit{gambiae, funestus}, and \textit{minimus};
+$p < 2\times10^{-16}$ and $\rho > 0.94$ for all three models;
+Figure \ref{fig:dlm}).
+This pattern --- nonsynonymous $D$ shifted upward relative to genic $D$
+on a per-gene basis --- is consistent with balancing forces
+maintaining nonsynonymous variation at a subset of genes.
+
+Finally, genome-wide distributions of genic and nonsynonymous $F_{ST}$ are nearly identical
+within each species, with a close to 1:1 relationship between the two measures
+(Figures \ref{fig:popstats}, \ref{fig:fstlm}).
+In most organisms, purifying selection would be expected to depress nonsynonymous $F_{ST}$
+relative to genic $F_{ST}$.
+The absence of this pattern here suggests that local adaptation
+may be elevating nonsynonymous differentiation,
+consistent with the high levels of nonsynonymous polymorphism
+we observe across species.
+
+\begin{table}[htp]
+\centering
+\begin{tabular}{@{}lllllll@{}}
+\toprule
+\textbf{Species}      & \textbf{$\pi_{G}$} & \textbf{$\pi_N$} & \textbf{Tajima's $D_G$} & \textbf{Tajima's $D_N$} & \textbf{$F_{ST_G}$} & \textbf{$F_{ST_{N}}$} \\ \midrule
+\textit{An. gambiae}  & 0.02348            & 0.00258             & -1.48478                & -1.96957                   & 0.04450             & 0.03859                \\
+\textit{An. funestus} & 0.01467            & 0.00417             & -1.38169                & -1.88379                   & 0.08568             & 0.07314                \\
+\textit{An. minimus}  & 0.01206            & 0.00408             & -1.82551                & -2.26612                   & 0.01562             & 0.01224                \\ \bottomrule
+\end{tabular}
+\caption{Summary of genic and nonsynonymous population genetic statistics for 
+\textit{An. gambiae}, \textit{funestus}, and \textit{minimus}. Tajima's $D$ values are reported as the median across genes; other 
+values are reported as the mean across genes.}
+\label{table:statstable}
+\end{table}
+
+
+Taken together, the $\pi$, Tajima's $D$, and $F_{ST}$ results point to a shared pattern
+across all three species: nonsynonymous variation is abundant,
+shows signatures of balancing selection on a per-gene basis,
+and is not depleted by purifying selection to the extent seen in other organisms.
+We next examine which genes and functional categories
+drive these genome-wide patterns in each species.
+
+\begin{figure}[htp]
+\includegraphics[width=\linewidth]{{figures/population_metrics_violin_plots.pdf}}
+\centering
+\caption{Distribution of genic (lighter color) and nonsynonymous (darker color) $\pi$, Tajima's $D$, and $F_{ST}$ values within \textit{An. gambiae}, \textit{funestus}, and \textit{minimus}.
+}
+\label{fig:popstats}
+\end{figure}
+
+In \textit{An. gambiae}, genes with elevated nonsynonymous polymorphism
+include cytochrome P450s, which are involved in insecticide resistance,
+immune genes such as CLIP-domain serine protease (AGAP011790),
+and cuticular genes such as chitinase (AGAP006191).
+Among high-$\pi_{N}$ genes, we find significant enrichment
+for sensory perception of smell, stimulus response,
+stress response [DNA damage response, cellular response to stress],
+proteolysis, and proteoglycan metabolism
+(Figure \ref{fig:goenrich}, Table \ref{gambGOpi}).
+The overrepresentation of these functional groups
+likely reflects varying environmental pressures
+across \textit{An. gambiae}'s range,
+which covers the majority of sub-Saharan Africa:
+sensory perception and stimulus response may involve
+host-seeking behavior or insecticide avoidance,
+both of which vary across the landscape,
+while stress response is also associated with insecticide resistance.
+The enrichment of proteoglycan metabolism genes may reflect balancing selection
+on an immune trait, as proteoglycans mediate \textit{Plasmodium} interactions
+\citep{Armistead_Wilson_vanKuppevelt_Dinglasan_2011}.
+
+Genes with elevated nonsynonymous Tajima's $D$ echo several of these categories,
+with enrichment for sensory perception of smell and proteolysis,
+a key component of blood meal digestion,
+as well as glutathione, sulfur compound, and NADP metabolic processes
+(Table \ref{gambGOd}).
+These metabolic categories are all involved in maintaining
+redox equilibrium \citep{redox_fecundity}.
+The production of reactive oxygen species
+is a key part of \textit{Anopheles} immune defense,
+and redox states have been shown to impact fitness in \textit{An. gambiae}
+\citep{redox_fecundity, redox_gutmicro, redox_plasmodium}.
+The convergence of $\pi_{N}$ and Tajima's $D_{N}$ enrichments
+on overlapping functional categories suggests that balancing selection
+and local adaptation help maintain functional polymorphism
+in \textit{An. gambiae} redox metabolism,
+with potential downstream impacts on immunity, fecundity, and insecticide susceptibility.
+
+A similar pattern emerges in \textit{An. funestus},
+where genes with elevated nonsynonymous polymorphism
+include a number of immune genes ---
+we observe 13 CD109 antigen-like genes, leucine-rich repeat proteins,
+and a TsetseEP-like gene among outliers.
+Among high-$\pi_{N}$ genes, we find significant enrichment
+for reproduction, development, and protein metabolism
+(Figure \ref{fig:goenrich}, Table \ref{afunGOpi}).
+
+Genes with elevated nonsynonymous Tajima's $D$ also include immune genes,
+as well as multiple phenoloxidase-activating enzymes.
+GO enrichment for high-$D_{N}$ genes reveals protein metabolic processes
+along with a number of catabolic and transport processes
+(Table \ref{afunGOd}).
+Notably, metabolic enrichments center on nucleoside diphosphate
+and carbohydrate metabolism,
+particularly purine ribonucleotide diphosphates,
+which are involved in the pentose phosphate pathway (PPP),
+a critical component of \textit{Anopheles} redox metabolism
+\citep{Kanehisa_Furumichi_Sato_Matsuura_Ishiguro-Watanabe_2024}.
+The presence of phenoloxidase-activating enzymes among high-$D_{N}$ genes
+reinforces this redox connection,
+as phenoloxidase activity is tightly linked to reactive oxygen species production.
+As in \textit{An. gambiae}, the overlap between $\pi_{N}$ and Tajima's $D_{N}$
+enrichments on metabolic processes suggests that balancing selection
+and spatially varying pressures maintain functional polymorphism
+in \textit{An. funestus},
+with protein and carbohydrate metabolism genes
+likely subject to varying dietary and immunological demands across the species range.
+
+The picture differs in \textit{An. minimus}.
+Genes with elevated nonsynonymous polymorphism
+include cuticular proteins and immune genes such as a CLIP-domain serine protease,
+and elevated nonsynonymous Tajima's $D$ flags additional immune genes.
+Among high-$\pi_{N}$ genes, we find enrichment primarily
+for broad regulatory functions
+(Figure \ref{fig:goenrich}, Table \ref{aminGOpi}).
+High-$D_N$ genes show a similar regulatory signature,
+with enrichment for regulation of catalytic activity,
+protein metabolic process, and macromolecule metabolic process,
+as well as sensory perception of chemical stimulus
+(Table \ref{aminGOd}).
+The sensory enrichment parallels the pattern observed in \textit{An. gambiae},
+but the overall enrichment profile in \textit{An. minimus}
+is notably distinct from the other two species:
+where \textit{An. gambiae} and \textit{An. funestus} show enrichment
+for specific metabolic and immune pathways,
+\textit{An. minimus} enrichments center on higher-level regulatory processes,
+suggesting that nonsynonymous variation in this species
+may be maintained through different selective pressures
+or different evolutionary responses to similar pressures.
+
+Across all three species, immune genes and sensory genes
+consistently appear among nonsynonymous outliers,
+while the metabolic signatures of balancing selection ---
+redox metabolism in \textit{An. gambiae} and \textit{An. funestus},
+broad regulatory processes in \textit{An. minimus} ---
+suggest both shared and lineage-specific pressures
+shaping nonsynonymous variation in these vectors.
+
+\begin{figure}[htp]
+\includegraphics[width=\linewidth]{{figures/population_metrics_go_enrichment_ns_pi.pdf}}
+\centering
+\caption{Significant GO enrichments for nonsynonymous $\pi$ outliers in \textit{An. gambiae}, \textit{funestus}, and \textit{minimus}.
+}
+\label{fig:goenrich}
+\end{figure}
+
+\subsection{Adaptive divergence targets overlapping functional categories across lineages}
+
+\subsubsection{McDonald Kreitman test}
+
+Having established that nonsynonymous variation is abundant
+and bears signatures of balancing selection,
+we next asked whether comparisons of polymorphism and divergence
+show evidence of non-neutral evolution. 
+Using the asymptotic McDonald-Kreitman test \citep{asym_mk},
+we estimated the proportion of amino acid fixations driven by directional selection ($\alpha$)
+for all one-to-one orthologs across the three species.
+Despite the high levels of nonsynonymous polymorphism documented above,
+genome-wide $\alpha$ exceeds 0.60 in all three lineages,
+with the lowest value in \textit{An. gambiae} ($\alpha = 0.600$)
+and the highest in \textit{An. funestus} ($\alpha = 0.655$).
+These values are comparable to or slightly higher than
+the asymptotic $\alpha$ of 0.571 estimated for \textit{D. melanogaster}
+\citep{asym_mk, Haller_Messer_2017},
+indicating similarly pervasive adaptive protein evolution
+despite very different ecology and life history.
+However, the number of individual genes
+with significant evidence of directional selection is small,
+indicating that while strong positive selection acts on a subset of genes,
+the majority continue to segregate nonsynonymous variants
+(Figure \ref{fig:mktest}).
+
+\begin{figure}[htp]
+\includegraphics[width=\linewidth]{{figures/polarized_mk_tests_all_genes.pdf}}
+\centering
+\caption{Results of the asymptotic McDonald-Kreitman test for all one-to-one orthologs across \textit{An. gambiae}, \textit{An. funestus}, and \textit{An. minimus}.
+Light blue points represent genes with significant evidence of adaptive divergence after Boneferroni correction ($p < 0.05$), 
+while dark blue points represent genes with a significant excess of nonsynonymous polymorphism.}
+\label{fig:mktest}
+\end{figure}
+
+In \textit{An. gambiae}, 1238 of 5149 one-to-one orthologs (24\%)
+show evidence of non-neutral evolution ($p < 0.05$),
+but only 171 of these have $\alpha$ values
+indicating adaptive directional selection ($\alpha > 0.5$).
+The gene with the highest significant $\alpha$,
+fatty acyl-CoA reductase 2 (AGAP004784),
+is involved in cuticle formation and has an estimated 100\%
+of its nonsynonymous fixations due to positive selection
+($p = 3.406 \times 10^{-3}$).
+Several sensory genes also show strong directional selection,
+including odorant-binding protein 11
+(AGAP002025, $\alpha = 0.900$, $p = 6.926\times10^{-3}$),
+sensory appendage protein 1
+(AGAP008051, $\alpha = 0.816$, $p = 2.887\times10^{-2}$),
+and odorant-binding protein 69
+(AGAP006368, $\alpha = 0.814$, $p = 1.393\times10^{-2}$).
+Notably, sensory perception of smell is also enriched
+among high-$\pi_N$ genes (see above),
+indicating that this functional category potentially experiences both balancing
+and directional selection on different loci.
+Immune genes with elevated $\alpha$ include a mannose-binding C-type lectin
+(AGAP029559, $\alpha = 0.818$, $p = 1.449\times10^{-12}$),
+a CLIP-domain serine protease
+(AGAP011789, $\alpha = 0.681$, $p = 2.162\times10^{-2}$),
+and a leucine-rich immune protein
+(AGAP006348, $\alpha = 0.616$, $p = 1.044\times10^{-3}$).
+One of the strongest signals of adaptive divergence
+is in a heparan-sulfate 6-O-sulfotransferase
+(AGAP001444, $\alpha = 0.937$, $p = 1.195\times10^{-2}$).
+Heparan sulfate mediates \textit{Anopheles}--\textit{Plasmodium} interactions,
+and this signal may reflect coevolution between vector and parasite
+\citep{Armistead_Wilson_vanKuppevelt_Dinglasan_2011,
+Sinnis_Coppi_Toida_Toyoda_Kinoshita-Toyoda_Xie_Kemp_Linhardt_2007}.
+
+\begin{table}[htp]
+\centering
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Gene} & \textbf{$p$ value}    & \textbf{$\alpha$} & \textbf{Product Description}                                                                      \\ \midrule
+AGAP004784    & $3.406\times10^{-3}$  & 1.00                 & fatty acyl-CoA reductase 2                                                                        \\
+AGAP009154    & $7.697\times10^{-5}$  & 0.96                 & actin-related protein 2/3 complex subunit 2                                                       \\
+AGAP001444    & $1.195\times10^{-2}$  & 0.94                 & Heparan-sulfate 6-O-sulfotransferase                                                              \\
+AGAP005400    & $4.334\times10^{-7}$  & 0.92                 & four and a half LIM domains                                                                       \\
+AGAP001903    & $1.662\times10^{-17}$ & 0.91                 & NAD-dependent malate dehydrogenase                                                                \\
+AGAP005696    & $1.664\times10^{-3}$  & 0.91                 & cuticular protein from two-cysteine family 1                                                      \\
+AGAP005991    & $5.071\times10^{-3}$  & 0.91                 & 60S ribosomal protein L14                                                                         \\
+AGAP007668    & $3.841\times10^{-2}$  & 0.91                 & Eukaryotic translation initiation factor 3 subunit G                                              \\
+AGAP002025    & $6.926\times10^{-3}$  & 0.90                 & odorant-binding protein 11                                                                        \\
+AGAP005958    & $4.641\times10^{-4}$  & 0.86                 & Yellow-g                                                                                          \\ \bottomrule
+\end{tabular}
+\caption{Top 10 genes with significant evidence of adaptive divergence in \textit{An. gambiae}}
+\label{table:gambMK}
+\end{table}
+
+Testing for functional enrichment among high-$\alpha$ genes,
+we find enrichment for translation, protein-containing complex assembly,
+and nuclear transport --- categories likely reflecting general species divergence,
+though changes in protein complex assembly could also involve
+complement-like complexes central to \textit{Anopheles} immune response
+\citep{Povelones_Upton_Sala_Christophides_2011,
+Povelones_Waterhouse_Kafatos_Christophides_2009}.
+We also find enrichment for stress response,
+carbohydrate derivative catabolism, and organophosphate catabolism.
+As with sensory genes, stress response genes
+appear to experience both balancing selection (excess nonsynonymous polymorphism)
+and directional selection (elevated $\alpha$) on different loci.
+The enrichment for organophosphate catabolism is particularly striking
+and may represent a direct adaptation
+to the phosphate-containing insecticides deployed in vector control.
+
+A similar proportion of genes show non-neutral evolution in \textit{An. funestus}
+(1249 of 5149, 24.2\%),
+though a notably larger fraction --- 710 genes --- have $\alpha$ values
+indicating adaptive divergence, compared to 171 in \textit{An. gambiae}.
+Cuticle formation, sensory perception, insecticide resistance,
+and immune response are again common themes among high-$\alpha$ genes.
+Fourteen genes in \textit{An. funestus} lack any nonsynonymous polymorphism
+despite nonsynonymous divergence ($\alpha = 1.0$),
+including Tango10 (AGAP000791, $p = 2.909\times10^{-5}$),
+a circadian rhythm protein,
+and sensory appendage protein 1
+(AGAP008051, $p = 3.472 \times 10^{-4}$),
+which also shows elevated $\alpha$ in the \textit{gambiae} lineage,
+indicating that this gene is diverging under directional selection
+in both species independently.
+Yellow-g (AGAP005958) provides another case of parallel divergence,
+with $\alpha = 0.873$ ($p = 1.804\times10^{-4}$) in \textit{An. gambiae}
+and $\alpha = 1.0$ ($p = 7.884\times10^{-5}$) in \textit{An. funestus}.
+Its ortholog inhibits \textit{Plasmodium vivax} in \textit{An. dirus}
+\citep{yellowg_plasmodium}
+and prevents egg desiccation in \textit{Aedes} mosquitoes
+\citep{yellowg_desiccation},
+either of which could explain its adaptive divergence along both lineages.
+
+\begin{table}[htp]
+\centering
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Gene} & \textbf{$p$ value}   & \textbf{$\alpha$} & \textbf{Product Description}                         \\ \midrule
+AGAP000308    & $4.426\times10^{-2}$   & 1.00                 & proteasome activator subunit 3 (PA28 gamma)          \\
+AGAP000791    & $2.909\times10^{-5}$ & 1.00                 & Tango10                                              \\
+AGAP001515    & $3.386\times10^{-2}$   & 1.00                 & unspecified product                                  \\
+AGAP001805    & $9.179\times10^{-3}$  & 1.00                 & 60S ribosomal protein L13                            \\
+AGAP002053    & $1.224\times10^{-2}$   & 1.00                 & unspecified product                                  \\
+AGAP002935    & $1.312\times10^{-2}$   & 1.00                 & Eukaryotic translation initiation factor 3 subunit F \\
+AGAP002936    & $4.021\times10^{-2}$   & 1.00                 & unspecified product                                  \\
+AGAP003462    & $2.819\times10^{-2}$   & 1.00                 & protein arginine N-methyltransferase 1               \\
+AGAP005991    & $4.220\times10^{-3}$  & 1.00                 & 60S ribosomal protein L14                            \\
+AGAP005958    & $7.884\times10^{-5}$ & 1.00                 & Yellow-g                                             \\ \bottomrule
+\end{tabular}
+\caption{Top 10 genes with significant evidence of adaptive divergence in \textit{An. funestus}}
+\label{table:afunMK}
+\end{table}
+
+Functional enrichment among high-$\alpha$ genes in \textit{An. funestus}
+reveals a broader set of categories than in \textit{An. gambiae},
+including reproduction, cell cycle, nuclear transport,
+translational initiation, development, sensory perception, and locomotion.
+Reproductive and developmental enrichments
+likely reflect the rapid evolution characteristic of these functional categories,
+and nuclear transport and translation may be attributed to general species divergence.
+More striking are the enrichments for locomotion and signal transduction,
+both of which may be associated with adaptation to insecticide exposure:
+pyrethroids in particular cause locomotor deficits,
+and resistance is associated with changes in locomotion
+\citep{pyretheroid-loc, pyretheroid-fit},
+while signal transduction is disrupted by several classes of insecticides
+\citep{signal_transduction_insecticides}
+and may also contribute to behavioral resistance via avoidant behavior.
+
+
+The \textit{An. minimus} lineage shows markedly less non-neutral evolution:
+only 815 of 5149 orthologs (15.8\%) reject neutrality,
+and just 215 have $\alpha$ values indicating adaptive divergence.
+As in \textit{An. funestus}, a number of genes lack any nonsynonymous polymorphism
+despite nonsynonymous divergence ($\alpha = 1.0$),
+including two post-translational modification enzymes:
+serine/threonine protein phosphatase 6
+(AMIN003725, $p = 1.493\times10^{-2}$)
+and protein arginine N-methyltransferase 1
+(AMIN000933, $p = 5.432\times10^{-3}$).
+Other high-$\alpha$ genes include immune proteins
+such as spaetzle-like cytokine 1
+(AMIN005499, $\alpha = 0.808$, $p = 9.834\times10^{-5}$)
+and a mannose-binding C-type lectin
+(AMIN016218, $\alpha = 0.756$, $p = 3.087\times10^{-2}$),
+as well as cuticular proteins such as fatty acyl-CoA reductase (AGAP001084)
+and sensory proteins such as odorant-binding protein 40 (AGAP002191).
+Although we do not find evidence for adaptive divergence in Yellow-g
+as we do in \textit{An. gambiae} and \textit{An. funestus},
+a paralog, Yellow-g2, is adaptively diverging in \textit{An. minimus}
+(AMIN010972, $\alpha = 0.796$, $p = 4.141\times10^{-3}$).
+Yellow-g2's ortholog in \textit{Aedes} prevents egg desiccation
+\citep{yellowg_desiccation},
+and it may play a role analogous to Yellow-g
+in \textit{Plasmodium} inhibition \citep{yellowg_plasmodium},
+suggesting that selection on this gene family
+is a recurring theme across \textit{Anopheles} lineages.
+
+\begin{table}[htp]
+\centering
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Gene} & \textbf{$p$ value}     & \textbf{$\alpha$} & \textbf{Product Description}                                       \\ \midrule
+AGAP002762    & $1.975\times10^{-2}$   & 1.00                 & Chaperonin containing TCP1 subunit 7                               \\
+AGAP003017    & $1.493\times10^{-2}$   & 1.00                 & serine/threonine-protein phosphatase 6 catalytic subunit           \\
+AGAP003462    & $5.432\times10^{-3}$   & 1.00                 & protein arginine N-methyltransferase 1                             \\
+AGAP008041    & $3.147\times10^{-3}$   & 1.00                 & RING finger protein 121                                            \\
+AGAP009863    & $2.319\times10^{-3}$   & 1.00                 & eukaryotic translation initiation factor 4A, isoform 2             \\
+AGAP011706    & $2.348\times10^{-2}$   & 1.00                 & 60S ribosomal protein L27a                                         \\
+AGAP011937    & $8.950\times10^{-4}$   & 1.00                 & unspecified product                                                \\
+AGAP001805    & $1.942\times10^{-3}$   & 0.96                 & 60S ribosomal protein L13  \\
+AGAP004819    & $4.690\times10^{-3}$   & 0.95                 & receptor expression-enhancing protein 5                            \\
+AGAP005542    & $2.030\times10^{-9}$   & 0.94                 & Queuine tRNA-ribosyltransferase subunit QTRTD1 homolog             \\ \bottomrule
+\end{tabular}
+\caption{Top 10 genes with significant evidence of adaptive divergence in \textit{An. minimus}}
+\label{table:aminMK}
+\end{table}
+
+Functional enrichment among high-$\alpha$ genes in \textit{An. minimus}
+highlights programmed cell death, translation, nuclear transport,
+purine nucleotide metabolism, and phosphorus metabolism.
+As in the other two species, translation and nuclear transport
+likely reflect general species divergence.
+Programmed cell death is a hallmark of both development and immune response;
+its enrichment among adaptively diverging genes
+may reflect directional selection on immune function.
+The enrichment of purine ribonucleotide and ribose phosphate metabolism
+parallels the polymorphism results in \textit{An. funestus}
+and may signal functional divergence in redox metabolism,
+driven by selection on immune defense or insecticide detoxification.
+Finally, the enrichment for phosphorus metabolism
+echoes the organophosphate catabolism signal in \textit{An. gambiae}
+and likely reflects adaptation to organophosphate insecticides
+deployed across these species' ranges.
+
+Across all three species, the McDonald-Kreitman results reveal a consistent picture:
+genome-wide $\alpha$ values comparable to \textit{Drosophila}
+indicate pervasive adaptive protein evolution,
+yet the genes individually under directional selection
+are enriched for the same functional themes ---
+immune response, sensory perception, cuticle formation,
+and insecticide-related metabolism ---
+that also harbor excess nonsynonymous polymorphism.
+Several genes, including sensory appendage protein 1 and the Yellow-g family,
+show parallel adaptive divergence across lineages,
+reinforcing the convergence of selective pressures
+acting on these deeply diverged vectors.
+
+%\subsection{Balancing selection maintains nonsynonymous polymorphism}
+
+%While we observe a suite of genes evolving under directional selection using the McDonald Kreitman test, \comment{there are also a lot of significant hits on genes with an excess of amino acid polymoprphism (\textit{ie}, a neutrality index greater than one}. Further, while we observe a strong negative relationship between the neutrality index and overall genic Tajima's $D$ in significant genes across all three species, there is a positive relationship between the neutrality index and nonsynonymous Tajima's $D$. Though the vast majority of genes in our analysis have negative Tajima's $D$ values (both genic and nonsynonymous), the correlation between excess amino acid polymorphism and increased $D_N$ suggests that this polymorphism is maintained in part due to balancing selection.
+%Across all three species tested, genes with a significant excess of amino acid polymorphism are enriched for tRNA and RNA processing; functional variation in these processes may give rise to and maintain phenotypic variation that is not identifiable at the genotypic level.
+
+
+
+\subsubsection{Phylogenetic testing}
+
+To complement the McDonald-Kreitman analysis,
+we used a branch model \citep{yang2007paml} to test for positive selection
+($\omega > 1$) along the \textit{gambiae}, \textit{funestus},
+and \textit{minimus} branches.
+Because population-level samples contain segregating variation
+that can influence branch-model inference,
+we ran the test ten times per ortholog
+using alignments of randomly drawn haplotypes from each species.
+This design distinguishes genes where all sampled haplotypes
+show $\omega > 1$ --- indicating fixation of adaptive substitutions ---
+from genes where only some haplotypes do,
+suggesting that adaptive divergence is still segregating within the species (\nameref{sec:between}).
+
+In \textit{An. gambiae}, genes with significant $\omega > 1$
+are enriched for signal transduction,
+and we observe elevated $\omega$ on segregating haplotypes
+in immune genes such as LRRCT domain-containing protein
+and in cuticular proteins such as fatty acyl-CoA reductase.
+In \textit{An. funestus}, enrichments shift to translation,
+mitosis, and polyamine metabolism.
+LRRCT domain-containing protein again shows elevated $\omega$
+across all sampled haplotypes --- a parallel with \textit{An. gambiae} ---
+while other immune genes such as mannose-binding C-type lectin
+show $\omega > 1$ on only a subset of haplotypes,
+illustrating how adaptive divergence can coexist
+with segregating nonsynonymous variation at the same locus.
+In \textit{An. minimus}, enrichments center on ATP metabolism,
+chitin metabolism, amino sugar metabolism,
+and purine ribonucleotide metabolism ---
+the last of which echoes the purine metabolic enrichments
+observed in both the polymorphism and MK analyses.
+Unlike \textit{An. gambiae} and \textit{An. funestus},
+immune and cuticular genes in \textit{An. minimus}
+do not show haplotype-level variation in $\omega$,
+consistent with the more generic regulatory enrichments
+observed among \textit{minimus} nonsynonymous polymorphism outliers.
+
+\subsection{Convergent nonsynonymous spatial differentiation between \textit{An. gambiae} and \textit{funestus}}
+
+The analyses above show that \textit{An. gambiae} and \textit{An. funestus}
+share many of the same functional targets of selection.
+Because these two species are broadly sympatric across sub-Saharan Africa,
+we next asked whether nonsynonymous spatial differentiation
+within each species follows similar geographic patterns.
+Among the one-to-one orthologs,
+seven exhibit elevated nonsynonymous $F_{ST}$ in both species,
+including three cytochrome P450s, a cholesterol transporter,
+and a Niemann-Pick Type C-2 protein.
+To test whether differentiation in these genes follows similar spatial axes,
+we averaged nonsynonymous $F_{ST}$ vectors across sampling locations
+for each gene and compared the resulting vectors between species
+(\nameref{sec:fst}).
+Three genes share significantly similar axes of nonsynonymous differentiation:
+two cytochrome P450s at the Cyp6p locus ---
+Cyp6p5 (AGAP002866) and Cyp6p2 (AGAP002869) ---
+and protein FAM91A1 (AGAP002874) (Figure \ref{fig:fst_corr}).
+The Cyp6p locus is a cluster of cytochrome P450 genes
+whose mutations are implicated in insecticide resistance,
+and the shared east-west axis of differentiation across species
+suggests convergent adaptation to spatially varying insecticide exposure.
+FAM91A1 has no well-documented role in \textit{Anopheles} biology,
+but its convergent spatial differentiation with the Cyp6p genes
+may indicate a related function in insecticide response.
+
+In Cyp6p5, we identify four nonsynonymous mutations
+contributing to west-east $F_{ST_{N}}$ in \textit{An. gambiae} (AGAP002866)
+and seven in \textit{An. funestus} (AFUN2\_013651).
+Of these, three in each species share the same spatial constraint,
+occurring almost exclusively in the northeast of the sampling region
+in the Central African Republic, Uganda, and northwest 
+Tanzania (Figure \ref{fig:cyp6p5}A).
+In both species, the spatially constrained mutations cluster
+near the N-terminus or channel entrance of the protein,
+suggesting convergent molecular evolution in this region
+(Figure \ref{fig:cyp6p5}B).
+We used ThermoMPNN to estimate the impact of individual mutations
+on protein folding stability
+(though current methods cannot model the effects of co-occurring mutations).
+In the \textit{gambiae} Cyp6p5, N343T and V87I are moderately destabilizing
+($\Delta\Delta G = 0.243$ and $0.083$ kcal/mol, respectively),
+and H36C, while only slightly destabilizing ($\Delta\Delta G = 0.038$ kcal/mol),
+substitutes a sulfur-containing cysteine for a histidine
+near the protein's first $\alpha$ helix,
+with potentially outsized impacts on folding or catalytic activity.
+All three mutations segregate on the same haplotype.
+In the \textit{funestus} Cyp6p5, V14L and R169H are moderately stabilizing
+($\Delta\Delta G = -0.136$ and $-0.022$ kcal/mol),
+while P171Q is moderately destabilizing ($\Delta\Delta G = 0.248$ kcal/mol),
+likely due to substitution of a proline in a hairpin turn
+between two $\alpha$ helices.
+R169H and P171Q segregate on the same haplotype,
+while V14L does not co-occur with either.
+The remaining four \textit{funestus} mutations
+are spatially constrained to the far southeast or northwest
+and may represent independent adaptive responses
+to insecticide exposure (Figure \ref{fig:afun_cyp}).
+Although individual mutation effects on protein stability are moderate,
+co-occurrence on the same haplotype in both species
+raises the possibility of non-additive epistatic effects on protein function.
+
+
+\begin{figure}[htp]
+\includegraphics[width=0.9\linewidth]{{figures/AGAP002866_mutations.pdf}}
+\centering
+\caption{(A) Frequency of spatially-constrained nonsynonymous Cyp6p5 mutations in \textit{An. gambiae} (left) and \textit{funestus} (right). (B) Position of spatially-constrained nonsynonymous mutations on the Cyp6p5 protein in \textit{An. gambiae} (left) and \textit{funestus} (right). Arrow indicates channel entrance.
+}
+\label{fig:cyp6p5}
+\end{figure}
+
+A similar pattern emerges in Cyp6p2.
+We identify four nonsynonymous mutations
+contributing to west-east $F_{ST_{N}}$ in \textit{An. gambiae} (AGAP002869)
+and nine in its \textit{An. funestus} ortholog.
+One mutation in each species --- P449S in \textit{gambiae}
+and Y391D in \textit{funestus} ---
+shares the same spatial constraint
+and maps to the same region of the protein structure
+(Figure \ref{fig:cyp6p2}).
+Both are strongly destabilizing:
+P449S ($\Delta\Delta G = 1.067$ kcal/mol) disrupts a hairpin turn
+near the heme-binding pocket,
+and Y391D ($\Delta\Delta G = 2.801$ kcal/mol) occurs
+at a similar position near the channel entrance.
+
+Across both Cyp6p5 and Cyp6p2,
+the same geographic regions segregate functionally relevant mutations
+at high frequency in both species,
+and the mutations themselves have convergent destabilizing effects
+on protein structure.
+Cytochrome P450 enzymes are central to insecticide resistance
+in \textit{Anopheles},
+and while most resistance at this locus has been attributed
+to copy number variation,
+recent evidence points to a role for nonsynonymous variation as well
+\citep{Rehmann_Small_Ralph_Kern_2025}.
+The convergent spatial and molecular patterns we observe at the Cyp6p locus
+provide strong evidence that \textit{An. gambiae} and \textit{An. funestus}
+are independently adapting to the same insecticide pressures
+through parallel nonsynonymous changes in the same genes.
+
+
+
+\begin{figure}[H]
+\includegraphics[width=0.9\linewidth]{{figures/AGAP002869_mutations.pdf}}
+\centering
+\caption{(A) Frequency of spatially-constrained nonsynonymous Cyp6p2 mutations in \textit{An. gambiae} (left) and \textit{funestus} (right). (B) Position of spatially-constrained nonsynonymous mutations on the Cyp6p2 protein in \textit{An. gambiae} (left) and \textit{funestus} (right). Arrow indicates channel entrance.
+}
+\label{fig:cyp6p2}
+\end{figure}
+
+\section{Discussion}
+
+In this study, we use gene-level population and phylogenetic approaches
+to uncover the evolutionary forces acting on nonsynonymous variation
+in three deeply diverged \textit{Anopheles} species.
+Our results point to a scenario where diversifying selection
+maintains functional nonsynonymous polymorphism within species,
+and where the same genes and functional categories
+that harbor this variation are also evolving under directional selection along lineages,
+providing a substrate for global adaptation
+when selection pressures are strong enough.
+
+
+We find that nonsynonymous polymorphism is abundant in 
+\textit{Anopheles} populations, and that this variation is maintained
+in part by balancing selection, as indicated by the relationship 
+between genic and nonsynonymous Tajima's $D$, 
+and in part by local adaptation, as indicated by the relationship 
+between genic and nonsynonymous $F_{ST}$.
+Genes with elevated nonsynonymous polymorphism are enriched for 
+sensory and metabolic functions, particularly
+redox metabolism; we also identify
+a number of specific genes involved in immune response and cuticle formation.
+Many of these genes and functions are also evolving under 
+directional selection along \textit{Anopheles} lineages,
+suggesting that the similar selection pressures both maintain 
+polymorphism and drive divergence in these species.
+We hypothesize that much of the nonsynonymous variation we observe 
+is maintained under hyperlocal adaptation, and can sweep to fixation 
+under strong enough selection pressures.
+Adaptation to insecticide exposure in particular appears to be 
+under both diversifying and directional selection, with behavioral, 
+metabolic, and cuticular genes both segregating nonsynonymous variants 
+and fixing them adaptively. 
+Sensory functions involved in behavioral resistance are enriched for 
+nonsynonymous variation in 
+\textit{An. gambiae} and \textit{minimus}, but certain genes 
+involved in sensory processing have 
+a significant proportion of adaptive fixations in all three lineages. 
+This is also true of metabolic resistance:
+ while we identify two striking examples of convergent 
+local adaptation in two \textit{An. gambiae} and 
+\textit{funestus} cytochrome P450s in addition 
+to a number of detoxification enzymes segregating 
+excess amounts of nonsynonymous polymorphism, 
+overall metabolism of organophosphates is evolving
+under directional selection in \textit{gambiae} and \textit{minimus}.
+Genes involved in cuticle formation are also 
+outliers with respect to nonsynonymous polymorphism, 
+likely driven by local adaptation to desiccation and insecticide exposure, 
+however cuticle formation and maintenance genes are also 
+fixing adaptive variants on deeper evolutionary timescales. 
+All of this points to the polymorphism maintained in 
+\textit{Anopheles} populations being an abundant reservoir of 
+potentially-adaptive variation relevant to the sort of
+evolutionary pressures they are facing across their ranges.
+
+The genome-wide asymptotic $\alpha$ values we estimate
+($0.600$--$0.655$ across the three species)
+place \textit{Anopheles} among the most adaptively evolving animal lineages studied to date.
+Across a broad survey of animals,
+$\alpha$ correlates positively with effective population size,
+with large-$N_e$ invertebrates such as \textit{Drosophila} ($\alpha \approx 0.57$)
+at the high end and small-$N_e$ vertebrates such as primates ($\alpha \approx 0.2$)
+at the low end \citep{Galtier_2016}.
+The \textit{Anopheles} values exceed those of \textit{D. melanogaster}
+and are consistent with the large effective population sizes of these species,
+confirming that selection acts efficiently to fix beneficial amino acid substitutions.
+This makes the abundance of segregating nonsynonymous polymorphism all the more striking:
+it persists not because selection is weak,
+but despite selection being strong.
+At the same time, relatively few individual genes
+show significant evidence of directional selection in the per-gene MK tests,
+even as the asymptotic genome-wide test indicates pervasive adaptation.
+This apparent discrepancy likely reflects the strong local population structure
+in \textit{Anopheles}, which generates an excess of rare nonsynonymous variants
+that inflate the neutrality index at individual loci.
+The asymptotic MK test accounts for this by fitting the frequency spectrum,
+but individual gene-level tests lack the power to do so
+and are consequently biased toward excess amino acid polymorphism.
+This interpretation is consistent with the deeply negative Tajima's $D$ values
+we observe across species
+and with the spatial population structure evident in our $F_{ST}$ analyses.
+
+
+Our phylogenetic branch model analysis provides a complementary line of evidence
+connecting within-species polymorphism to between-species divergence.
+By running branch models on replicate alignments of randomly sampled haplotypes,
+we can distinguish genes where all sampled haplotypes show $\omega > 1$ ---
+indicating that adaptive substitutions have fixed along a lineage ---
+from genes where only some haplotypes do,
+indicating that adaptive divergence is still segregating within the species.
+This distinction is important because it reveals
+that some of the nonsynonymous variation we observe within species
+is not merely tolerated but is itself adaptive,
+with different haplotypes at the same locus under different selective regimes.
+In \textit{An. gambiae} and \textit{An. funestus},
+immune genes such as LRRCT domain-containing protein
+show elevated $\omega$ across all sampled haplotypes,
+while others such as mannose-binding C-type lectin
+show $\omega > 1$ on only a subset,
+illustrating how adaptive divergence can coexist
+with segregating functional polymorphism at the same locus.
+These results reinforce the view that nonsynonymous variation
+in \textit{Anopheles} is actively maintained by selection
+rather than simply awaiting fixation or loss.
+
+One interesting functional category that is both 
+segregating high amounts of nonsynonymous variation
+and evolving directionally in \textit{Anopheles} is 
+genes involved in redox metabolism. 
+This includes elevated nonsynonymous polymorphism in 
+genes involved in glutathione metabolism, NADPH metabolism, and 
+potentially the pentose phosphate pathway via enrichment 
+for genes involved in purine ribonucleotide metabolism 
+\citep{Kanehisa_Furumichi_Sato_Matsuura_Ishiguro-Watanabe_2024}.
+\textit{Anopheles} redox metabolism is critical to 
+their immune response and fecundity, 
+and is also implicated in tolerance of insecticide exposure 
+\citep{redox_fecundity, redox_plasmodium, redox_gutmicro}.
+Given the importance of reactive oxygen species in crucial
+\textit{Anopheles} biological functions and its impacts on overall
+mosquito fitness, it is unsurprising that genes involved in 
+redox metabolism are both maintaining nonsynonymous variation, 
+possibly due to local adaptation to different pathogen and 
+insecticide pressures, and also evolving directionally along 
+\textit{Anopheles} lineages, with some of these variants 
+becoming globally adaptive and fixing.
+
+Beyond redox metabolism, we also uncover a number of genes and 
+functional categories involved in immune response that are 
+both segregating nonsynonymous variation and evolving directionally in \textit{Anopheles}.
+This includes genes involved in pathogen recognition, 
+such as C-type lectins and leucine-rich repeat proteins, as 
+well as genes involved in \textit{Anopheles} immune signaling, 
+such as CLIP-domain serine proteases.
+In \textit{An. funestus}, we observe an interesting outlier 
+for nonsynonymous polymorphism in a gene encoding protein TsetseEP-like
+(AFUN2\_010725), a homolog of TsetseEP,
+a protein involved in trypanosome defense in tsetse flies.
+It is not unexpected that we observe immune genes to be both
+maintaining variation and evolving directionally,
+as \textit{Anopheles} are under constant pressure from a variety of pathogens
+and the immune system is a common target of selection in many species.
+The \textit{Anopheles} immune response is also critical to their
+ability to transmit the \textit{Plasmodium} parasites,
+and we observe some evidence that genes specifically involved in
+\textit{Anopheles}--\textit{Plasmodium} interactions
+are either maintaining variation or evolving directionally, such 
+as the heparan-sulfate 6-O-sulfotransferase in \textit{An. gambiae} and
+potentially Yellow-g in \textit{An. gambiae} and \textit{funestus}.
+Understanding the genes required for \textit{Anopheles} vector 
+competence is informative for 
+potential malaria transmission-blocking strategies,
+and some of these genes may be promising candidates for further 
+investigation in this regard, 
+particularly those that are evolving under directional selection 
+as they may be more likely to be involved in critical 
+\textit{Anopheles}-\textit{Plasmodium} interactions.
+
+Human vector control efforts, particularly insecticide deployment, 
+are a major selective pressure on \textit{Anopheles} populations.
+Unsurprisingly, we see clear evidence of adaptation to insecticide exposure 
+in all three species, with genes involved in metabolic,
+behavioral, and cuticular resistance all showing signals of both 
+local and directional selection.
+Consistent with the relatively recent deployment of these measures 
+(in evolutionary timescales) as well as the variability
+in this selection pressure across space, we observe many genes relevant 
+to insecticide resistance are segregating an excess of 
+nonsynonymous polymorphism, particularly genes involved in sensory perception 
+(behavioral resistance) and cellular responses to stress.
+One example of local adaptation to potential insecticide pressure 
+is identified in two cytochrome P450 genes, Cyp6p5 and Cyp6p2, 
+where we observe similar spatial patterns of nonsynonymous differentiation 
+in \textit{An. gambiae} and \textit{funestus} populations.
+In addition to this local adaptation, we also find evidence for 
+global adaptation to insecticide exposure in \textit{An. gambiae} and 
+\textit{minimus}, with enrichment for genes involved in organophosphate 
+metabolism amongst genes with significantly elevated
+$\alpha$ values. Organophosphate insecticides are commonly used in vector 
+control efforts and replaced more 
+environmentally persistent organochlorine insecticides such as DDT; 
+however resistance to organophosphates is becoming more 
+widespread and here we observe clear evidence of adaptation to 
+this class of insecticides in \textit{Anopheles} vectors 
+\citep{organophosphates, organophosphate_resistance}.
+
+One of our most striking
+results is the convergent spatial differentiation in Cyp6p5 and Cyp6p2 in \textit{An. gambiae} and \textit{funestus},
+with the same geographic regions segregating functionally relevant mutations in both species.
+Both these genes occur at the Cyp6p locus, a cluster of cytochrome P450 genes that are associated 
+with pyretheroid resistance in \textit{Anopheles} \citep{cyp6, p450}.
+While much of the resistance at this locus has been attributed to copy number variation leading 
+to overexpression of these detoxification enzymes, more recent evidence points to a role for nonsynonymous 
+variation also being adaptive in these proteins \citep{Rehmann_Small_Ralph_Kern_2025}, and indeed 
+we observe several nonsynonymous mutations in both Cyp6p5 and Cyp6p2 that are spatially constrained,
+despite being at high frequency locally, and also have destabilizing effects on protein folding. 
+In Cyp6p5, this includes three mutations in \textit{An. gambiae} and three in \textit{funestus} that 
+occur almost exclusively in the northeast of the sampling region and are clustered at 
+the N-terminus and channel entrance of the enzyme.
+In Cyp6p2, we find even stronger evidence for molecular convergence, with a single mutation in either \textit{An. gambiae} 
+or \textit{funestus} being strongly destabilizing and also being nearly fixed in the same geographic region.
+The observation of convergent spatial and molecular patterns in these two genes provides 
+an example of local adaptation to insecticide pressures, which is not entirely unsurprising given that
+\textit{An. gambiae} and \textit{funestus} share a range across which they are subject to many similar environmental pressures.
+Such common patterns of adaptation have been observed in other species, such as in \textit{Drosophila}, where
+deeply-diverged species show parallel adaptation to environmental clines across their range \citep{Zhao_Begun_2017}.
+
+
+Insecticides are of course not the only selective pressure 
+acting on \textit{Anopheles} biology, and on longer evolutionary timescales we observe functional 
+categories of genes evolving under directional selection that,
+while presently relevant to insecticide resistance, are also 
+acted on by selection pressures that predate insecticide deployment.
+This includes genes involved in cuticle formation, which are 
+relevant to insecticide resistance but also likely
+evolving directionally in response to desiccation and other environmental 
+pressures, as well as genes involved in sensory perception,
+which are relevant to behavioral resistance but also critical 
+for a variety of other \textit{Anopheles} 
+functions such as host-seeking and mate choice.
+The fact that these functional categories have been evolving under 
+directional selection along \textit{Anopheles} lineages while
+still segregating high amounts of nonsynonymous variation suggests that the same genes 
+and pathways relevant to contemporary insecticide pressures
+have been important targets of directional selection and 
+local adaptation throughout \textit{Anopheles} evolutionary history,
+and that the variation we observe in these genes today may 
+be a future reservoir of adaptive potential for these species.
+
+One functional category that we observe in one species 
+but not others is genes involved in reproduction, which are both segregating excess 
+nonsynonymous polymorphism and evolving directionally in 
+\textit{An. funestus} but not \textit{gambiae} or \textit{minimus}.
+One possibility is that this is due to 
+cryptic species divergence within \textit{An. funestus},
+ as reproductive functions are often rapidly evolving along 
+ divergent lineages and may be particularly sensitive to population structure.
+Indeed sympatric 'ecotypes' have been observed in \textit{An. funestus} 
+populations in Burkina Faso \citep{afun_eco} and deeply-diverged 
+mitochondrial lineages have been observed in sympatric \textit{An. funestus}
+populations in Zambia and Tanzania \citep{afun_mito}.
+Further potential evidence for cryptic species divergence may be the presence 
+of large genomic inversions in \textit{An. funestus},
+similar to the well-documented inversions in the \textit{An. gambiae} 
+species complex that are associated with speciation
+\citep{funestus, gambiae}.
+While we do not find direct evidence for cryptic speciation, the 
+enrichment for reproductive genes among those segregating nonsynonymous variation 
+and evolving directionally in \textit{An. funestus} provides another
+line of evidence that this may be the case and warrants further investigation.
+
+More broadly, \textit{An. minimus} stands apart from the two African species
+in several respects.
+It shows markedly less non-neutral evolution in the McDonald-Kreitman analysis
+(15.8\% of orthologs compared to $\sim$24\% in \textit{An. gambiae} and \textit{funestus}),
+and its GO enrichments for nonsynonymous polymorphism center on
+broad regulatory processes rather than the specific metabolic and immune pathways
+identified in the African species.
+Several factors may contribute to this difference.
+\textit{An. minimus} occupies a distinct ecological niche
+in the forested landscapes of Southeast Asia,
+with different pathogen exposure and a different history of insecticide deployment
+than the African vectors.
+The shorter branch length between \textit{An. minimus} and \textit{An. funestus}
+may also reduce power to detect lineage-specific adaptive divergence.
+Additionally, our \textit{An. minimus} samples are drawn from a single country (Cambodia),
+which may limit our ability to detect the spatially varying selection
+that is more apparent across the continental-scale sampling of the African species.
+
+Overall, the patterns of nonsynonymous variation and directional selection that we observe
+in \textit{Anopheles} reflect both their population histories and the convergent selection
+pressures they are facing across their ranges. In these highly polymorphic,
+large $N_e$ species, we see evidence for both local adaptation and balancing selection
+maintaining abundant nonsynonymous polymorphism that provides a reservoir of
+potentially globally-adaptive variants. The same functions and processes
+that segregate high amounts of nonsynonymous variation are also evolving directionally on
+longer timescales, with even some of the same genes showing
+parallel adaptive divergence across lineages.
+This parallels the pattern observed in \textit{Drosophila}, where
+species harbor comparable levels of nonsynonymous polymorphism and
+also show strong evidence of adaptive protein evolution and
+parallel adaptation to environmental pressures \citep{drosophila, Zhao_Wit_Svetec_Begun_2015}.
+Indeed, \citet{Zhao_Begun_2017} found substantial parallelism
+in \textit{Drosophila} adaptation across two timescales:
+the same genes that show clinal differentiation within species
+are enriched among those evolving under directional selection between species,
+a finding strikingly consistent with our observation that
+functional categories harboring excess nonsynonymous polymorphism in \textit{Anopheles}
+are also targets of lineage-level adaptive divergence.
+However, there are notable differences.
+The proportion of genes evolving under directional
+selection is much smaller in \textit{Anopheles} than in \textit{Drosophila} despite
+much deeper divergence times,
+possibly reflecting lower rates of amino acid fixation between \textit{Anopheles} lineages
+and the different ecological histories of these systems.
+At the same time, the high proportion of genes in \textit{Anopheles}
+that harbor an excess of nonsynonymous polymorphism
+is not observed in \textit{Drosophila} despite similar effective population sizes \citep{drosophila},
+providing further evidence that non-neutral processes actively maintain
+this variation in \textit{Anopheles}.
+The specific functional targets of adaptation also differ:
+where \textit{Drosophila} lineages show enrichment for
+general species divergence functions such as translation and nuclear transport,
+\textit{Anopheles} lineages are enriched for genes relevant to
+local adaptation, immune response, and insecticide resistance.
+These common patterns of selection across deeply diverged lineages highlight
+the impact of parallel and convergent evolution in shaping the genomic landscape of these vectors.
+
+Through local adaptation and balancing selection,
+\textit{Anopheles} species maintain abundant nonsynonymous
+polymorphism in the same functional categories that are evolving under directional selection.
+Genes involved in insecticide resistance, immune response, cuticle formation, sensory perception, and redox metabolism
+both segregate excess nonsynonymous polymorphism and are diverging under directional selection along \textit{Anopheles} lineages,
+pointing to a scenario where standing variation provides a reservoir of potentially globally-adaptive variants.
+The forces that maintain this variation and drive divergence are shared across \textit{Anopheles} lineages,
+and we observe many of the same genes diverging under parallel directional selection.
+Most notably, we find evidence for convergent local adaptation to insecticide pressures in \textit{An. gambiae} and \textit{funestus},
+with two cytochrome P450 genes segregating molecularly similar mutations in the same geographic regions in both species.
+These results demonstrate the adaptive potential of these mosquito vectors, highlighting the importance of standing
+variation in their ability to respond to selection pressures across their ranges.
+In \textit{Anopheles} malaria vectors, where the strongest selection pressures are often driven by human intervention,
+understanding their evolutionary dynamics will be critical for anticipating and managing resistance
+as vector control efforts continue to intensify.
+
+
+
+
+
