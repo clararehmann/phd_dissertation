@@ -1,6 +1,40 @@
 \abstract{
-	\IfFileExists{Abstract_Section.md.tex}{
-		\input{Abstract_Section.md.tex} % This loads the file. This is relative to the location of this file.
-	}
-	{} % If the file *doesn't exist, do nothing.
+Spatial genetic structure -- the observation that individuals that live closer together are
+more genetically similar, termed "isolation by distance" -- is ubiquitious in natural populations.
+Despite its prevalence and importance for understanding how genetic variation 
+spreads and is shared through populations, much of our contemporary understanding of evolutionary processes
+is still informed by models that do not account for this spatial population structure.
+While this structure can obscure signatures of evolutionary processes as we understand them,
+it also provides another dimension of information that can inform how we analyze genetic variation and
+uncover the evolutionary histories that underlie it.
+
+In this dissertation, I use a combination of continuous-space simulation and spatially-referenced
+genomic datasets in order to investigate and uncover the evolutionary dynamics of 
+\textit{Anopheles} malaria vectors and their \textit{Plasmodium} parasites. 
+With this work, I develop and introduce novel spatial methods for detecting evolutionary processes,
+including migration and positive selection.
+In application, these approaches uncover previously unobserved co-geographic structure
+shared by the malaria parasite and its vector, identify novel candidate alleles undergoing positive selection,
+and reveal convergent selection pressures acting on deeply-diverged vector species.
+
+In Chapter II, I use machine learning to evaluate evidence for co-geography in the \textit{Anopheles-Plasmodium}
+host-parasite system. Interrogating the spatial patterns of prediction errors from a machine learning method 
+for geographic prediction from genetic data, I develop a method to reduce prediction bias when training on 
+spatially-imbalanced datasets and then use this approach to confirm that errors from both \textit{Anopheles gambiae}
+and \textit{Plasmodium falciparum} are a biological signal of shared dispersal patterns.
+In Chapter III, I use continuous-space simulation to uncover a novel spatial signal of selective sweeps, and 
+use this observation to develop an approach for identifying candidate sweeping alleles in spatially-referenced genetic data.
+Applying this method to \textit{Anopheles gambiae} populations in West Africa, I identify several novel alleles
+that appear to be under positive selection, including variants with functional relevance and at loci associated with insecticide resistance.
+Finally, in Chapter IV, I use a comparative population genetic approach to investigate the evolutionary forces 
+shaping and mainintaining patterns of high polymorphism in \textit{Anopheles} vectors. This work reveals
+common selection pressures -- primarily acting on genes relevant to immunity and insecticide resistance -- 
+that both maintain functional variation within and drive adaptive divergence between species;
+in uncovering these patterns, I identify spatially convergent selection on proteins involved in insecticide resistance
+across two major African \textit{Anopheles} vectors.
+Altogether, this dissertation demonstrates the potential of leveraging spatial population genetic structure in order to 
+inform our understanding of evolutionary dynamics, providing insight into the evolutionary history of \textit{Anopheles}
+malaria vectors and their \textit{Plasmodium} parasites while introducing novel methods to identify these processes.
+
+This disseration includes previously published and unpublished co-authored material.
 }
