@@ -23,25 +23,28 @@
 
 \chapter{Introduction}
 
-\comment{Understanding evolutionary processes is important: what has happened in the past can help inform what
-will happen in the future. }
-\comment{To understand past evolutionary events, population genetics relies on analysis of
- patterns of genetic diversity that we observe in the present.}
+Evolutionary histories and processes are essential to our understanding 
+of the natural world and help inform what will happen in the future.
+Knowing what happened in the past and how it happened, however, requires inferring 
+these processes from what we observe in the present.
+To understand past evolutionary events, population genetics relies on analysis of
+patterns of genetic diversity in natural populations.
 Different evolutionary processes imprint different signatures on the genomes of populations:
 Forces such as mutation, drift, and selection, as well as events such as population size changes or migration, 
-will all drastically impact the patterns of genetic diversity that we observe in natural populations. 
-For example, a beneficial mutation that sweeps to fixation will leave a characteristic pattern of reduced genetic diversity
-by causing nearby linked loci to also increase in frequency alongside the beneficial allele \citep{smith_hitch-hiking_1974},
-or migration between two separate populations will lead to shared (introgressed) \comment{is this the right word?} regions
+will all drastically impact the patterns of genetic diversity in natural populations. 
+For example, a beneficial mutation that rises to fixation will leave a characteristic pattern 
+of reduced diversity in the genome in a process known as a "selective sweep," \citep{smith_hitch-hiking_1974},
+or migration between two separate populations will lead to shared regions
 of the genome that have common patterns of variation between the populations.
-The task of population genetics is to leverage these genetic signatures in order to infer the evolutionary history they represent.
+The goal of population genetics is to identify and leverage these genetic signatures in order to 
+infer the evolutionary history they represent.
 
 In natural populations, these patterns of genetic diversity are also distributed across geographic space, 
 with each individual in a population - and their genome - occupying a location on the landscape. 
 As evolutionary time plays forward, these individuals interact, reproduce, and disperse locally, giving rise to spatial 
 genetic structure within populations: in short, individuals that are closer spatially tend to also be closer genetically.
 This phenomenon, termed "isolation by distance" by Sewall Wright \citep{wright1946isolation}, is ubiquitious in natural populations
-and has been well-documented across a wide variety of taxa \citep{xue2021discovery, schlenke2004strong} \comment{more references}.
+and has been well-documented across a wide variety of taxa \citep{xue2021discovery, schlenke2004strong}.
 However, despite its prevalence in natural populations, much of our contemporary understanding of
 evolutionary processes is still informed by models that do not account for this spatial population structure.
 While the simplifying assumption that all individuals in a population are equally likely to mate regardless
@@ -56,8 +59,8 @@ however, the finer-scale patterns of spatial genetic structure now observable in
 
 
 
-\comment{This dissertation focuses on leveraging spatial population structure to uncover and describe evolutionary processes 
-in the malaria parasite, \textit{Plasmodium}, and its mosquito vector, \textit{Anopheles}.}
+This dissertation focuses on leveraging spatial population structure to uncover and describe evolutionary processes 
+in the malaria mosquito vector, \textit{Anopheles}.
 Malaria is an ancient human disease that remains a persistent public health threat despite recent advances in 
 treatments, vaccines, and vector control efforts.
 Both the parasite and its vector rapidly evolve to counter human interventions, making understanding their 
@@ -65,8 +68,8 @@ evolutionary histories and trajectories crucial to effective disease prevention 
 Vector control efforts in particular are critical for containing the spread of malaria,
 and extensive genomic surveillance of \textit{Anopheles} species now allows us to not only understand 
 the population structure of these mosquitoes, but also to identify when and how they are adapting to human interventions
-such as insecticides \citep{anopheles2017genetic, consortium_genome_2020} \comment{more citations...}.
-Using \comment{extensive} spatial population genomic datasets of \textit{Anopheles} and \textit{Plasmodium}, I 
+such as insecticides \citep{anopheles2017genetic, consortium_genome_2020}.
+Using extensive spatial population genomic datasets of \textit{Anopheles} mosquitoes, I 
 investigate patterns of dispersal, selection, polymorphism, and divergence in this system,
 focusing on how incorporating spatial information into genetic analyses helps uncover processes that would otherwise go undetected.
 
@@ -85,14 +88,14 @@ when this method is applied to \textit{An. gambiae} and \textit{P. falciparum}, 
 these predictions reflecting shared patterns of dispersal across the landscape, particularly in West Africa.
 This observation of common dispersal patterns between host and parasite across short evolutionary timescales is novel 
 and has important implications for understanding patterns of gene flow and the spread of adaptive alleles in both species.
-\comment{This work was published in \textit{G3 | Genes | Genomes | Genetics} in 2024 and is co-authored by 
-Peter L. Ralph and Andrew D. Kern.}
+This work was published in \textit{G3 | Genes | Genomes | Genetics} in 2024 and is co-authored by 
+Peter L. Ralph and Andrew D. Kern.
 
 
-Investigating patterns of dispersal in \textit{Anopheles} and \textit{Plasmodium}, \comment{I became interested in how beneficial variants
-were spreading through these spatially-structured populations.}
+Investigating patterns of dispersal in \textit{Anopheles} and \textit{Plasmodium}, I became interested in how beneficial variants
+were spreading through these spatially-structured populations.
 Positive selection plays a fundamental role in shaping variation in natural populations, and the 
-rapid spread of beneficial alleles (a process called a "selective sweep") is responsible for many instances of adaptation.
+rapid spread of beneficial alleles is responsible for many instances of adaptation.
 This evolutionary process is particularly important to understand in the context of malaria control efforts, as both the parasite
 and its vector are rapidly evolving to counter human interventions such as insecticides and antimalarial drugs.
 While the impact of spatial population structure on the spread of beneficial mutations has been understood theoretically \citep{fisher_wave_1937},
@@ -102,11 +105,11 @@ In Chapter III, I use continuous-space simulation to identify a spatial signatur
 observation to develop a method to identify sweeping alleles in spatially-referenced genetic datasets. 
 In simulations of selective sweeps, I observed that positively-selected alleles tend to occupy less of the landscape than
 neutral alleles at the same frequency. 
-While counterintuitive, this \comment{observation} can be explained by the fact that neutral alleles, if not lost,  
+While counterintuitive, this observation can be explained by the fact that neutral alleles, if not lost,  
 will spread through a population - and across the landscape - without increasing in frequency.
 Positively-selected alleles, on the other hand, will inherently increase in frequency as they sweep through the population, and this 
 increase in frequency outpaces their spatial spread. 
-Using this \comment{observation}, I develop an approach to detect positively-selected alleles as outliers to the 
+Using this observation, I develop an approach to detect positively-selected alleles as outliers to the 
 genome-wide spatial-frequency distribution of genetic variants.
 Applying this approach to \textit{Anopheles gambiae}, we identify multiple positively selected and functionally impactful 
 variants segregating the population, including variants within known insecticide-resistant loci, 
@@ -114,7 +117,7 @@ potentially novel sources of insecticide resistance, and other potentially selec
 associated with immune response, sensory perception, and development.
 This work provides a novel method for identifying positively-selected alleles in spatially-structured populations and demonstrates
 the potential of spatial information to inform, rather than obscure, our understanding of evolutionary processes.
-\comment{This work was published in \textit{Molecular Biology and Evolution} in 2025 and is co-authored by Scott T. Small, Peter L. Ralph, and Andrew D. Kern.}
+This work was published in \textit{Molecular Biology and Evolution} in 2025 and is co-authored by Scott T. Small, Peter L. Ralph, and Andrew D. Kern.
 
 \textit{Anopheles gambiae} exists as part of a broader \comment{family} of malaria vectors, and in Chapter IV, I use 
 a comparative approach to investigate the
@@ -136,10 +139,10 @@ similar molecular impacts and spatial distributions in two
 cytochrome P450 enzymes, which are known to be involved in metabolic insecticide resistance.
 My work in this chapter provides insight into the evolutionary forces shaping patterns of polymorphism and divergence in 
 \textit{Anopheles} malaria vectors and highlights the importance of considering spatial population structure when investigating these processes.
-\comment{This study is in preparation for submission to \textit{PLOS Genetics} and is co-authored by Andrew D. Kern.}
+This study is in preparation for submission to \textit{PLOS Genetics} and is co-authored by Andrew D. Kern.
 
 Overall, my dissertation explores how spatial population structure can be leveraged to better understand evolutionary processes
-in \textit{Anopheles} malaria vectors and their \textit{Plasmodium} parasites, 
+in \textit{Anopheles} malaria vectors, 
 with important implications for understanding how these species are adapting in response to human interventions.
 Chapter II provides some of the first evidence for co-geography between \textit{Anopheles} and \textit{Plasmodium},
 suggesting that these species are dispersing in similar trajectories and that their evolutionary histories are intertwined across space.
@@ -150,4 +153,3 @@ patterns of polymorphism across three major \textit{Anopheles} malaria vectors, 
 across space may be maintaining important variation in these species.
 Together, this work demonstrates the potential of spatial information to inform our understanding of evolutionary processes
 in natural populations and provides insight into the evolutionary dynamics of malaria parasites and their mosquito vectors.
-

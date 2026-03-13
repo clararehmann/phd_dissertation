@@ -1,5 +1,7 @@
-\renewcommand{\bibfont}{\fontsize{10}{12}\selectfont}
+\newcommand{\comment}[1]{{\color{blue} #1}}
+\newcommand{\ag}{Ag1000G }
 \newcommand{\Anopheles}{\textit{Anopheles}}
+
 \section{Introduction}
 
 The \textit{Anopheles} mosquitoes that transmit human malaria
@@ -48,7 +50,10 @@ Despite high amounts of global polymorphism,
 these population genetic surveys have identified many instances of selection
 acting on local populations,
 particularly regarding adaptation to insecticides
-\citep{Xue_Schrider_Kern_2021, Clarkson_Miles_Harding_2021, Barnes_Weedall_Ndula_2017}.
+\citep{Xue_Schrider_Kern_2021, Clarkson_Miles_Harding_2021, Barnes_Weedall_Ndula_2017},
+and indeed while population structure in these species allows for local adaptation,
+strong enough selection pressures can lead to the rapid spread of adaptive variants
+such as insecticide resistance at the \textit{Vgsc} locus \citep{gambiae}.
 This raises the question of what forces maintain polymorphism in these populations
 while also allowing for rapid adaptation to local environmental pressures.
 In most systems, nonsynonymous polymorphism is assumed to be mildly deleterious,
@@ -60,7 +65,7 @@ We would therefore expect selection to act efficiently in these species,
 both fixing beneficial alleles and removing deleterious ones.
 Despite this, \textit{Anopheles} populations continue to segregate large amounts of nonsynonymous variation,
 suggesting that some of this polymorphism may not be deleterious
-but instead actively maintained by selection.
+but instead actively maintained by balancing selection or local adaptation.
 
 What is missing is a comparative, gene-level understanding
 of nonsynonymous variation across \textit{Anopheles} species ---
@@ -140,6 +145,9 @@ For \textit{An. gambiae} and \textit{An. funestus}, statistics except for $F_{ST
 were calculated on spatial cohort groups predetermined by the MalariaGEN data release 
 \citep{gambiae, funestus} and then averaged across cohorts in order to minimize the impact of 
 rare variants; for \textit{An. minimus} all samples were used at once.
+To calculate $F_{ST}$ within species, we used the \texttt{HBDSCAN} algorithm implemented through \texttt{scikit-learn} 
+spatially cluster sampling locations (with a minimum cluster size of five samples) and then
+calculated Weir and Cockerham's $F_{ST}$ between all clusters for a given gene.
 To assess the relationship between nonsynonymous and genic statistics,
  we fit linear models using the \texttt{stats} R package with the formula 
  $X_{N} \sim 0 + X_{G}$ where $X_{N}$ is the statistic for nonsynonymous sites 
@@ -152,12 +160,12 @@ To test for GO term enrichment amongst outlier genes, performed gene set enrichm
 using R package \texttt{topGO} \citep{RtopGO} and GO term 
 annotations obtained from VectorBase \citep{vectorbase}.
 To test for the statistical significance of overlap between lists of outlier genes, 
-we used R package \texttt{SuperExactTest} \citep{Rset}.
+we used R package \texttt{SuperExactTest} \citep{Rset}. 
 
 \subsubsection{Between species} \label{sec:between}
 
 We performed polarized gene-wise McDonald-Kreitman tests on each one-to-one 
-ortholog identified in \nameref{sec:geno} using Python package \texttt{mkado} (\url{https://pypi.org/project/mkado/}). 
+ortholog identified in \nameref{sec:geno} using Python package \texttt{mkado} \citep{mkado}. 
 In order to reduce the influence of rare variants on our analysis, we used a subset 
 of samples from each species selected from the same geographic region and time to conduct the test. 
 For \textit{An. gambiae} we used the AG1000G-GN-A cohort, for \textit{funestus} we 
@@ -241,9 +249,9 @@ where it is driven primarily by linked selection
 rather than demography \citep{drosophila}.
 Although across the genome the distribution of nonsynonymous Tajima's $D$
 is shifted below genic Tajima's $D$ in each species,
-modeling the per-gene relationship between nonsynonymous and genic $D$
+linear models of the per-gene relationship between nonsynonymous and genic $D$
 reveals that individual genes tend to have higher nonsynonymous than genic $D$
-($\beta = 1.227, 1.237, 1.173$ for \textit{gambiae, funestus}, and \textit{minimus};
+(coefficient $\beta = 1.227, 1.237, 1.173$ for \textit{gambiae, funestus}, and \textit{minimus};
 $p < 2\times10^{-16}$ and $\rho > 0.94$ for all three models;
 Figure \ref{fig:dlm}).
 This pattern --- nonsynonymous $D$ shifted upward relative to genic $D$
@@ -1125,7 +1133,6 @@ variation in their ability to respond to selection pressures across their ranges
 In \textit{Anopheles} malaria vectors, where the strongest selection pressures are often driven by human intervention,
 understanding their evolutionary dynamics will be critical for anticipating and managing resistance
 as vector control efforts continue to intensify.
-
 
 
 
