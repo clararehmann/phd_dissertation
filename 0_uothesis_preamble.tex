@@ -63,6 +63,7 @@
 \usepackage[USenglish,UKenglish]{babel}
 \usepackage{mathtools,amsmath,amsfonts,amsthm,amssymb,bm, bbm}
 \usepackage{dcolumn,booktabs,longtable}
+\usepackage[figurewithin=chapter,tablewithin=chapter]{caption}
 %\usepackage[singlelinecheck=false]{caption}
 %  \captionsetup[subfigure]{singlelinecheck=on, labelfont=normalfont}
 %  \captionsetup[figure]{labelfont=it}
@@ -124,6 +125,8 @@
 % MATH EQUATIONS AND THEOREMS (.cls also restructures theorem layout)
 %------------------------------------------------------------------------------%
 %--- Change \align{} and \equation{} spacing
+
+
 \usepackage{etoolbox}
 \newcommand{\zerodisplayskips}{%
   \setlength{\abovedisplayskip}{3pt}
@@ -134,3 +137,9 @@
 \appto{\small}{\zerodisplayskips}
 \appto{\footnotesize}{\zerodisplayskips}
 
+\newcommand{\beginsupplement}{%
+    \setcounter{table}{0}
+    \renewcommand{\thetable}{S\arabic{table}}%
+    \setcounter{figure}{0}
+    \renewcommand{\thefigure}{S\arabic{figure}}%
+}

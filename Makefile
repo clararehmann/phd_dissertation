@@ -1,14 +1,15 @@
 SHELL = /bin/sh
 MAIN = main
+REF = refs_cleaned
 LATEX = pdflatex
+
+BIBER := $(shell if $$(command -v Biber); then echo "Biber"; else echo "biber"; fi)
 
 all: $(MAIN).pdf findref
 
-$(MAIN).pdf: *.tex $(MAIN).bib
+$(MAIN).pdf: *.tex $(REF).bib
 	$(LATEX) $(LATEXFLAGS) $(MAIN).tex
-	bibtex $(LATEXFLAGS) $(MAIN)
-	touch $(MAIN).tex
-	$(LATEX) $(LATEXFLAGS) $(MAIN).tex
+	$(BIBER) $(MAIN).bcf
 	$(LATEX) $(LATEXFLAGS) $(MAIN).tex
 	$(LATEX) $(LATEXFLAGS) $(MAIN).tex
 

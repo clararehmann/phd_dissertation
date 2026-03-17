@@ -298,8 +298,8 @@ of this document.}
 \gdef\@birthplace{}
 \gdef\@birthday{}
 \gdef\@interests{}
-\gdef\@awards{}
-\gdef\@experience{}
+%\gdef\@awards{}
+%\gdef\@experience{}
 \gdef\@publications{}
 \def\birthplace#1{\gdef\@birthplace{#1}}
 \def\birthday#1{\gdef\@birthdate{#1}}
@@ -557,8 +557,8 @@ All rights reserved.
       \hangindent=\@cvhangindent
       \interlinepenalty=\@M
     }
-    \cvitem{PROFESSIONAL EXPERIENCE}{\@experience} \vskip .5\baselineskip
-    \cvitem{GRANTS, AWARDS AND HONORS}{\@awards} \vskip .5\baselineskip
+    %\cvitem{PROFESSIONAL EXPERIENCE}{\@experience} \vskip .5\baselineskip
+    %\cvitem{GRANTS, AWARDS AND HONORS}{\@awards} \vskip .5\baselineskip
     \cvitem{PUBLICATIONS}{\@publications} \vskip .5\baselineskip
     \par
   \end{singlespacing}
