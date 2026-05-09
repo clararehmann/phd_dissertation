@@ -422,7 +422,6 @@ of this document.}
 % Automatically give the author and year, without an extra linebreak beneath (as you would get from using '\ifbound\else\centerline{\copyright ~\thedegreeyear ~\@author}\fi'):
 \copyright ~\thedegreeyear ~\@author \\
 
-All rights reserved.
 
 %%%%%%%%%%%%%%%%%%%%%%
 % Below is an example for a Creative-Commons style license, if you want
@@ -434,9 +433,12 @@ All rights reserved.
 % license -- see https://creativecommons.org/choose/ for help choosing).
 %%%%%%%%%%%%%%%%%%%%%%
 
-%This work, including text and images of this document but not including supplemental files (for example, not including software code and data), is licensed under a Creative Commons\\ \textbf{\href{http://creativecommons.org/licenses/by/4.0/}{Attribution 4.0 International License}.}\\
+This work is licensed under a Creative Commons\\
+\href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Attribution 4.0 International License (CC BY-NC-SA)}.\\
 
-%\raisebox{-.5\height}{\includegraphics[height=2em]{/path/to/logo/image.eps}}
+\begin{center}
+\includegraphics[scale=0.05]{Cc-by-nc-sa_icon.svg.png}
+\end{center}
 
 %%%%%%%%%%%%%%%%%%%%%%
 % End of example
@@ -573,7 +575,6 @@ All rights reserved.
   \@makeackpage
   \@makededpage
   \begin{singlespacing}
-    \clearpage
     \@tableofcontents
     \ifnofigures\else
     \IfFileExists{\jobname.\ext@figure}{\@listoffigures}{\@starttoc{\ext@figure}}
